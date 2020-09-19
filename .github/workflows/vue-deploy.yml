@@ -24,4 +24,4 @@ jobs:
                   SOURCE: '/'
                   REMOTE_HOST: 'team2.eaglesoftwareteam.com'
                   REMOTE_USER: ubuntu
-                  TARGET: "/var/www/html/couselist-vue"
+                  TARGET: "/var/www/html/"
