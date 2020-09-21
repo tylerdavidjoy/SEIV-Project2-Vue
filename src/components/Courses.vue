@@ -91,7 +91,7 @@ export default {
     },
     methods: {
         view: function(){
-            this.$router.push('/');
+            this.$router.push('/edit');
           }
       }
 };
