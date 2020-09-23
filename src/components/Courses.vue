@@ -2,45 +2,45 @@
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
     <div v-for="(data,index) in courses" :key='index'>
-      <button class="list" v-on:click="view()">
+      <button class="list" v-on:click="view(data.value.code)">
         <tbody>
           <tr> 
-            <td class="list-content-large">{{data.name}}</td>
+            <td class="list-content-large">{{data.value.name}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Credits: {{data.credits}}</td>
+            <td class="list-content-small">Credits: {{data.value.credits}}</td>
           </tr>
 
           <tr> 
-            <td class="list-content-large">{{data.code}}</td>
+            <td class="list-content-large">{{data.value.code}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.semester}}</td>
-          </tr>
-
-          <tr> 
-            <td></td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.time}}</td>
+            <td class="list-content-small">{{data.value.semester}}</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.room}}</td>
+            <td class="list-content-small">{{data.value.time}}</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.professor}}</td>
+            <td class="list-content-small">{{data.value.room}}</td>
           </tr>
 
           <tr> 
-            <td class="list-content-description">{{data.desc}} </td>
+            <td></td>
+            <td></td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">{{data.value.professor}}</td>
+          </tr>
+
+          <tr> 
+            <td class="list-content-description">{{data.value.desc}} </td>
           </tr>
 
         </tbody>
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       courses: [
-        {
+        {"key":"CMSC-2133","value":{
             "code":"CMSC-2133",
             "name":"Object Oriented Programming",
             "desc":"Covers object oriented design and implementation issues. Topics include an introduction to modeling tools (e.g, UML), abstraction, inheritance, polymorphism, memory management, and common design patterns. The course also provides an introduction to event handling and GUI development using relevant class libraries",
@@ -64,8 +64,8 @@ export default {
             "semester":"Fall 2020",
             "room":"PEC 233",
             "time":"MWF 10:00AM"
-        },
-        {
+        }},
+        {"key":"CMSC-2413","value":{
             "code":"CMSC-2413",
             "name":"Assembly Language",
             "desc":"An introduction to assembly language concepts and programming. The topics include binary and hexadecimal number systems, data representation methods, addressing techniques and subroutines. This course is normally offered in the fall semseter.",
@@ -74,8 +74,8 @@ export default {
             "semester":"Fall 2020",
             "room":"PEC 233",
             "time":"MWF 9:15AM"
-        },
-        {
+        }},
+        {"key":"CMSC-1113","value":{
             "code":"CMSC-1113",
             "name":"Programming I",
             "desc":"An introduction to the discipline of computing. The course has three major objectives: to present computing as a discipline, to develop skills in problem solving using a computer and to teach the software development process. This course includes laboratory experiences in computer science.",
@@ -84,14 +84,14 @@ export default {
             "semester":"Fall 2020",
             "room":"HSH 207",
             "time":"MWF 10:00AM"
-        }
+        }}
         ],
         hover: false,
       }
     },
     methods: {
-        view: function(){
-            this.$router.push('/edit');
+        view: function(courseID){
+            this.$router.push({name: 'Edit', params: {id:courseID}})
           }
       }
 };
