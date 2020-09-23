@@ -3,37 +3,37 @@
     <h1 style="font-size:60px">Edit Course</h1>
     <div>
       <p>Number:</p>
-      <input v-model="cNumber" placeholder="Course Number" />
+      <input v-model="cNumber" placeholder="Number" />
 
       <p>Name:</p>
-      <input v-model="cName" placeholder="Course Name" />
+      <input v-model="cName" placeholder="Name" />
 
       <p>Professor:</p>
-      <input v-model="cProfessor" placeholder="Course Professor" />
+      <input v-model="cProfessor" placeholder="Professor" />
 
       <p>Semester:</p>
-      <input v-model="cSemester" placeholder="Course Semester" />
+      <input v-model="cSemester" placeholder="Semester" />
 
       <p>Credit:</p>
-      <input v-model="cCredit" placeholder="Course Credit" />
+      <input v-model="cCredit" placeholder="Credit" />
 
       <p>Start Time:</p>
-      <input v-model="cStartTime" placeholder="Course Start Time" />
+      <input v-model="cStartTime" placeholder="Start Time" />
 
       <p>End Time:</p>
-      <input v-model="cEndTime" placeholder="Course End Time" />
+      <input v-model="cEndTime" placeholder="End Time" />
 
       <p>Room:</p>
-      <input v-model="cRoom" placeholder="Course Room" />
+      <input v-model="cRoom" placeholder="Room" />
 
       <p>Description:</p>
-      <input v-model="cDescription" placeholder="Course Description" />
+      <input v-model="cDescription" placeholder="Description" />
 
       <p>Department:</p>
-      <input v-model="cDepartment" placeholder="Course Department" />
+      <input v-model="cDepartment" placeholder="Department" />
 
       <p>Level:</p>
-      <input v-model="cLevel" placeholder="Course Level" />
+      <input v-model="cLevel" placeholder="Level" />
 
       <button v-on:click="cSave()">Save</button>
       <button v-on:click="backToList()">Cancel</button>
