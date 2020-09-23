@@ -50,7 +50,7 @@
       <div>
         <button v-on:click="cSave()">Save</button>
         <button v-on:click="backToList()">Cancel</button>
-        <button v-on:click="cDelete()">Delete</button>
+        <button v-on:click="cDelete()" v-if="$route.params.new != true">Delete</button>
       </div>
     </div>
   </div>
