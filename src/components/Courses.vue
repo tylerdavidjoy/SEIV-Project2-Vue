@@ -46,6 +46,10 @@
         </tbody>
       </button>
     </div>
+    <div>
+      <button v-on:click="addNew(true)">Add Course
+      </button>
+    </div>
   </div>
 </template>
 
@@ -59,7 +63,10 @@ export default {
     },
     methods: {
         view: function(courseID){
-            this.$router.push({name: 'Edit', params: {id:courseID}})
+            this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
+          },
+        addNew: function(){
+          this.$router.push({name: 'New', params: {new:true}})
           }
       }
 };

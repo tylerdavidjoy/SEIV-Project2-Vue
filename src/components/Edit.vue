@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 style="font-size:60px">Edit Course {{ $route.params.id }}</h1>
+    <h1 v-if="$route.params.new != true" style="font-size:60px">Edit Course {{ $route.params.id }}</h1>
+    <h1 v-else style="font-size:60px">Add Course</h1>
     <div>
       <div>
         <label for="cNumber">Number:</label>
