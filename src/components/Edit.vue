@@ -48,9 +48,9 @@
         <input id="cLevel" v-bind="cLevel" placeholder="Level" />
       </div>
       <div>
-        <button v-on:click="cSave()">Save</button>
+        <button v-on:click="cSave($route.params.new)">Save</button>
         <button v-on:click="backToList()">Cancel</button>
-        <button v-on:click="cDelete()" v-if="$route.params.new != true">Delete</button>
+        <button v-on:click="cDelete($route.params.new)" v-if="$route.params.new != true">Delete</button>
       </div>
     </div>
   </div>
@@ -74,15 +74,29 @@ export default {
     }
   },
   methods: {
-    cSave: function() {
+    cSave: function(addNew) {
       // Save the course
-
+      if(addNew)
+      {
+        // ToDo
+      }
+      else
+      {
+        // ToDo
+      }
       // Go back to select page
       this.backToList();
     },
-    cDelete: function() {
+    cDelete: function(addNew) {
       // Delete the course
-
+      if(addNew)
+      {
+        // ToDo
+      }
+      else
+      {
+        // ToDo
+      }
       // Go back to select page
       this.backToList();
     },
