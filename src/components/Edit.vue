@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 style="font-size:60px">Edit Course</h1>
+    <h1 style="font-size:60px">Edit Course {{ $route.params.id }}</h1>
     <div>
       <div>
         <label for="cNumber">Number:</label>
