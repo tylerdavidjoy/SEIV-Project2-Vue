@@ -2,32 +2,42 @@
   <div>
     <h1 style="font-size:60px">Edit Course</h1>
     <div>
-      <p>Course Name:</p>
-      <input v-model="cname" placeholder="Course Name" />
+      <p>Number:</p>
+      <input v-model="cNumber" placeholder="Course Number" />
 
-      <p>Course Code:</p>
-      <input v-model="ccode" placeholder="Course Code" />
+      <p>Name:</p>
+      <input v-model="cName" placeholder="Course Name" />
 
-      <p>Course Credits:</p>
-      <input v-model="ccred" placeholder="Course Credits" />
+      <p>Professor:</p>
+      <input v-model="cProfessor" placeholder="Course Professor" />
 
-      <p>Course Semester:</p>
-      <input v-model="cseme" placeholder="Course Semester" />
+      <p>Semester:</p>
+      <input v-model="cSemester" placeholder="Course Semester" />
 
-      <p>Course Days:</p>
-      <input v-model="cdays" placeholder="Course Days" />
+      <p>Credit:</p>
+      <input v-model="cCredit" placeholder="Course Credit" />
 
-      <p>Course Time:</p>
-      <input v-model="ctime" placeholder="Course Time" />
+      <p>Start Time:</p>
+      <input v-model="cStartTime" placeholder="Course Start Time" />
 
-      <p>Course Room:</p>
-      <input v-model="croom" placeholder="Course Room" />
+      <p>End Time:</p>
+      <input v-model="cEndTime" placeholder="Course End Time" />
 
-      <p>Course Professor:</p>
-      <input v-model="cprof" placeholder="Course Professor" />
+      <p>Room:</p>
+      <input v-model="cRoom" placeholder="Course Room" />
 
-      <p>Course Description:</p>
-      <input v-model="cdesc" placeholder="Course Description" />
+      <p>Description:</p>
+      <input v-model="cDescription" placeholder="Course Description" />
+
+      <p>Department:</p>
+      <input v-model="cDepartment" placeholder="Course Department" />
+
+      <p>Level:</p>
+      <input v-model="cLevel" placeholder="Course Level" />
+
+      <button v-on:click="cSave()">Save</button>
+      <button v-on:click="backToList()">Cancel</button>
+      <button v-on:click="cDelete()">Delete</button>
     </div>
   </div>
 </template>
@@ -37,16 +47,35 @@ export default {
   name: "Edit",
   data() {
     return {
-      cname: "",
-      ccode: "",
-      ccred: "",
-      cseme: "",
-      cdays: "",
-      ctime: "",
-      croom: "",
-      cprof: "",
-      cdesc: "",
+      cNumber: "",
+      cName: "",
+      cProfessor: "",
+      cSemester: "",
+      cCredit: "",
+      cStartTime: "",
+      cEndTime: "",
+      cRoom: "",
+      cDescription: "",
+      cDepartment: "",
+      cLevel: ""
     };
   },
+  methods: {
+        cSave: function(){
+            // Save the course
+
+            // Go back to select page
+            this.backToList();
+          },
+        cDelete: function(){
+            // Delete the course
+
+            // Go back to select page
+            this.backToList();
+          },
+        backToList: function(){
+          this.$router.push('/listview');
+        }
+      }
 };
 </script>
