@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
+    <button v-on:click="addNew(true)">Add Course</button>
     <div v-for="(data,index) in courses" :key='index'>
       <button class="list" v-on:click="view(data.Course_Number)">
         <tbody>
@@ -15,14 +16,16 @@
             <td class="list-content-large">{{data.Course_Number}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.Course_Semester}}</td>
+            <td class="list-content-small" v-if="data.Course_Semester != '' " >{{data.Course_Semester}}</td>
+            <td class="list-content-small" v-else >Semester: TBD</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.Course_Start_Time}}</td>
+            <td class="list-content-small" v-if="data.Course_Start_Time != NULL">{{data.Course_Start_Time}}</td>
+            <td class="list-content-small" v-else>Time: TBD</td>
           </tr>
 
           <tr> 
@@ -40,14 +43,11 @@
           </tr>
 
           <tr> 
-            <td class="list-content-description">{{data.Course_Description}} </td>
+            <td class="list-content-description" v-if="data.Course_Description != '' ">{{data.Course_Description}} </td>
+            <td class="list-content-description" v-else >No Course Description</td>
           </tr>
 
         </tbody>
-      </button>
-    </div>
-    <div>
-      <button v-on:click="addNew(true)">Add Course
       </button>
     </div>
   </div>
