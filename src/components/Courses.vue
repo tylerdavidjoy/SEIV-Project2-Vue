@@ -2,45 +2,45 @@
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
     <div v-for="(data,index) in courses" :key='index'>
-      <button class="list" v-on:click="view(data.value.code)">
+      <button class="list" v-on:click="view(data.code)">
         <tbody>
           <tr> 
-            <td class="list-content-large">{{data.value.Course_Name}}</td>
+            <td class="list-content-large">{{data.Course_Name}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Credits: {{data.value.Course_Credit}}</td>
+            <td class="list-content-small">Credits: {{data.Course_Credit}}</td>
           </tr>
 
           <tr> 
-            <td class="list-content-large">{{data.value.Course_Number}}</td>
+            <td class="list-content-large">{{data.Course_Number}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.Course_Semester}}</td>
-          </tr>
-
-          <tr> 
-            <td></td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.Course_Start_Time}}</td>
+            <td class="list-content-small">{{data.Course_Semester}}</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.Course_Room}}</td>
+            <td class="list-content-small">{{data.Course_Start_Time}}</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.Course_Professor_Full_Name}}</td>
+            <td class="list-content-small">{{data.Course_Room}}</td>
           </tr>
 
           <tr> 
-            <td class="list-content-description">{{data.value.Course_Description}} </td>
+            <td></td>
+            <td></td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">{{data.Course_Professor_Full_Name}}</td>
+          </tr>
+
+          <tr> 
+            <td class="list-content-description">{{data.Course_Description}} </td>
           </tr>
 
         </tbody>
