@@ -1,7 +1,9 @@
 <template>
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
-    <button v-on:click="addNew(true)">Add Course</button>
+    <div>
+      <button v-on:click="addNew(true)">Add Course</button>
+    </div>
     <div v-for="(data,index) in courses" :key='index'>
       <button class="list" v-on:click="view(data.Course_Number)">
         <tbody>
