@@ -160,10 +160,10 @@ export default {
     },
   },
   created() {
-    if(!this.$router.params.new)
+    if(!this.$route.params.new)
     {
       axios
-      .get("http://team2.eaglesoftwareteam.com/courses/" + this.$router.params.id)
+      .get("http://team2.eaglesoftwareteam.com/courses/" + this.$route.params.id)
       .then(response => {
         console.log(response.data)
         this.course = response.data;
