@@ -5,42 +5,42 @@
       <button class="list" v-on:click="view(data.value.code)">
         <tbody>
           <tr> 
-            <td class="list-content-large">{{data.value.name}}</td>
+            <td class="list-content-large">{{data.value.Course_Name}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Credits: {{data.value.credits}}</td>
+            <td class="list-content-small">Credits: {{data.value.Course_Credit}}</td>
           </tr>
 
           <tr> 
-            <td class="list-content-large">{{data.value.code}}</td>
+            <td class="list-content-large">{{data.value.Course_Number}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.semester}}</td>
-          </tr>
-
-          <tr> 
-            <td></td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.time}}</td>
+            <td class="list-content-small">{{data.value.Course_Semester}}</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.room}}</td>
+            <td class="list-content-small">{{data.value.Course_Start_Time}}</td>
           </tr>
 
           <tr> 
             <td></td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.value.professor}}</td>
+            <td class="list-content-small">{{data.value.Course_Room}}</td>
           </tr>
 
           <tr> 
-            <td class="list-content-description">{{data.value.desc}} </td>
+            <td></td>
+            <td></td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">{{data.value.Course_Professor_Full_Name}}</td>
+          </tr>
+
+          <tr> 
+            <td class="list-content-description">{{data.value.Course_Description}} </td>
           </tr>
 
         </tbody>
