@@ -76,7 +76,7 @@ export default {
     .get("http://team2.eaglesoftwareteam.com/courses")
     .then(response => {
       console.log(response.data)
-      this.courses = response;
+      this.courses = response.data;
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
