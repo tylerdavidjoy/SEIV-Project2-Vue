@@ -2,7 +2,7 @@
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
     <div v-for="(data,index) in courses" :key='index'>
-      <button class="list" v-on:click="view(data.code)">
+      <button class="list" v-on:click="view(data.Course_Number)">
         <tbody>
           <tr> 
             <td class="list-content-large">{{data.Course_Name}}</td>
