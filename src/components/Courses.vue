@@ -4,8 +4,8 @@
 
     <div>
       <select v-model="selected"
-      @change="sort()">
-        <option disabled>Sort</option>
+      @change="sort()" style="margin:10px; height:20px">
+        <option disabled value="">Sort</option>
         <option>Course: A-Z</option>
         <option>Course: Z-A</option>
         <option>Professor: A-Z</option>
@@ -18,13 +18,10 @@
           placeholder="Search"
           style="width: 40%; height: 30px"
         />
-      <button v-on:click="searchItem()" style="width:7%; height: 36px">Search</button>
+      <button v-on:click="searchItem()" style="width:7%; height: 36px; margin:10px;">Search</button>
+      <button v-on:click="addNew(true)">Add +</button> 
     </div>
 
-    <div>
-      <button v-on:click="addNew(true)">Add Course</button> 
-    </div>
-        
     <div v-for="(data,index) in courses" :key='index'>
       <button class="list" v-on:click="view(data.Course_Number)">
         <tbody>
