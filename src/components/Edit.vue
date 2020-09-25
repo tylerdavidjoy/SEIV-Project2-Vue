@@ -74,7 +74,7 @@
         <tr>
           <td><label>Department:</label></td>
           <td>        
-            <input type="text" v-model="course.Course_Description" placeholder="Description" />
+            <input type="text" v-model="course.Course_Department" placeholder="Department" />
           </td>
         </tr>
 
@@ -128,7 +128,7 @@ export default {
       if (addNew) {
         axios
           .post(
-            "http://team2.eaglesoftwareteam.com/courses/",
+            "http://team2.eaglesoftwareteam.com/courses",
             {
               Course_Number: this.course.Course_Number,
               Course_Name: this.course.Course_Name,
