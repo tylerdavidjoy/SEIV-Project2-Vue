@@ -15,11 +15,7 @@
       </div>
       <div>
         <label>Name:</label>
-        <input
-          type="text"
-          v-model="course.Course_Name"
-          placeholder="Name"
-        />
+        <input type="text" v-model="course.Course_Name" placeholder="Name" />
       </div>
       <div>
         <label>Professor:</label>
@@ -63,11 +59,7 @@
       </div>
       <div>
         <label>Room:</label>
-        <input
-          type="text"
-          v-model="course.Course_Room"
-          placeholder="Room"
-        />
+        <input type="text" v-model="course.Course_Room" placeholder="Room" />
       </div>
       <div>
         <label>Description:</label>
@@ -87,11 +79,7 @@
       </div>
       <div>
         <label>Level:</label>
-        <input
-          type="text"
-          v-model="course.Course_Level"
-          placeholder="Level"
-        />
+        <input type="text" v-model="course.Course_Level" placeholder="Level" />
       </div>
       <div>
         <button v-on:click="cSave($route.params.new)">Save</button>
@@ -108,70 +96,120 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
+
+var course = {
+        Course_Number: "",
+        Course_Name: "",
+        Course_Professor_Full_Name: "",
+        Course_Semester: "",
+        Course_Credit: "",
+        Course_Start_Time: "",
+        Course_End_Time: "",
+        Course_Room: "",
+        Course_Description: "",
+        Course_Department: "",
+        Course_Level: "",
+      };
 
 export default {
-  data(){
-    return{
-        course: {
-          Course_Number: "",
-          Course_Name: "",
-          Course_Professor_Full_Name: "",
-          Course_Credit: "",
-          Course_Department: "",
-          Course_Description: "",
-          Course_End_Time: "",
-          Course_Start_Time: "",
-          Course_Semester: "",
-          Course_Level: "",
-          Course_Room: ""
-        }
-    }
+  data() {
+    return {
+      course
+    };
   },
   methods: {
     cSave: function(addNew) {
       // Save the course
-      if(addNew)
-      {
-        // ToDo
-      }
-      else
-      {
-        // ToDo
+      if (addNew) {
+        axios
+          .post(
+            "http://team2.eaglesoftwareteam.com/courses",
+            {
+              Course_Number: course.Course_Number,
+              Course_Name: course.Course_Name,
+              Course_Professor_Full_Name: course.Course_Professor_Full_Name,
+              Course_Semester: course.Course_Semester,
+              Course_Credit: Number(course.Course_Credit),
+              Course_Start_Time: course.Course_Start_Time,
+              Course_End_Time: course.Course_End_Time,
+              Course_Room: course.Course_Room,
+              Course_Description: course.Course_Description,
+              Course_Department: course.Course_Department,
+              Course_Level: Number(course.Course_Number),
+            }
+          )
+          .then(() => {
+            this.backToList();
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+            // Display error and don't change page
+          });
+      } else {
+        axios
+          .put(
+            "http://team2.eaglesoftwareteam.com/courses/" +
+              this.$route.params.id,
+            {
+              Course_Number: course.Course_Number,
+              Course_Name: course.Course_Name,
+              Course_Professor_Full_Name: course.Course_Professor_Full_Name,
+              Course_Semester: course.Course_Semester,
+              Course_Credit: Number(course.Course_Credit),
+              Course_Start_Time: course.Course_Start_Time,
+              Course_End_Time: course.Course_End_Time,
+              Course_Room: course.Course_Room,
+              Course_Description: course.Course_Description,
+              Course_Department: course.Course_Department,
+              Course_Level: Number(course.Course_Number),
+            }
+          )
+          .then(() => {
+            this.backToList();
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+            // Display  on page and ddon't change page
+          });
       }
       // Go back to select page
       this.backToList();
     },
     cDelete: function(addNew) {
       // Delete the course
-      if(addNew)
-      {
-        // ToDo
+      if (!addNew) {
+        axios
+          .delete(
+            "http://team2.eaglesoftwareteam.com/courses/" +
+              this.$route.params.id
+          )
+          .then(() => {
+            this.backToList();
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+          });
       }
-      else
-      {
-        // ToDo
-      }
-      // Go back to select page
-      this.backToList();
     },
     backToList: function() {
-      this.$router.push("/listview");
+      this.$router.push("/");
     },
   },
   created() {
-    if(!this.$route.params.new)
-    {
+    if (!this.$route.params.new) {
       axios
-      .get("http://team2.eaglesoftwareteam.com/courses/" + this.$route.params.id)
-      .then(response => {
-        console.log(response.data)
-        this.course = response.data;
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      })
+        .get(
+          "http://team2.eaglesoftwareteam.com/courses/" + this.$route.params.id
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.course = response.data;
+        })
+        .catch((error) => {
+          console.log("ERROR: " + error.response);
+        });
     }
-  }
+  },
 };
 </script>
