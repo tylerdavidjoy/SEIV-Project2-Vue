@@ -234,6 +234,7 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  padding: 0px 0px;
 }
 
 select {
@@ -244,5 +245,8 @@ select {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+input, label{
+  padding: 0px;
 }
 </style>
