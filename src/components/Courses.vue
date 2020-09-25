@@ -104,15 +104,22 @@ export default {
             .then(response => {
               console.log(response.data)
               this.courses = response.data;
+
+              if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
+              {
+                this.searchProf();
+              }
+
             })
             .catch(error => {
               console.log("ERROR: " + error.response)
             })
             console.log(this.courses.length);
-            if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
-            {
+
+          },
+          searchProf: function(){
               console.log("Course not found, trying Professor");
-              url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
+              var url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
 
             axios
               .get(url)
@@ -123,8 +130,6 @@ export default {
               .catch(error => {
                 console.log("ERROR: " + error.response)
               })
-
-            }
           }
       },
     created() {
