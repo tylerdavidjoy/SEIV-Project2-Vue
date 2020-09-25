@@ -1,9 +1,21 @@
 <template>
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
+
     <div>
-      <button v-on:click="addNew(true)">Add Course</button>
+      <input
+          type="text"
+          v-model="search"
+          placeholder="Search"
+          style="width: 40%; height: 30px"
+        />
+      <button v-on:click="searchItem()" style="width:7%; height: 36px">Search</button>
     </div>
+
+    <div>
+      <button v-on:click="addNew(true)">Add Course</button> 
+    </div>
+        
     <div v-for="(data,index) in courses" :key='index'>
       <button class="list" v-on:click="view(data.Course_Number)">
         <tbody>
@@ -63,6 +75,7 @@ export default {
     return {
       courses: [],
         hover: false,
+        search: ""
       }
     },
     methods: {
@@ -71,6 +84,42 @@ export default {
           },
         addNew: function(){
           this.$router.push({name: 'New', params: {new:true}})
+          },
+          searchItem: function(){
+            var url = "";
+              if(length(this.search) == 4){ //If we need to search for a department
+                url = "http://team2.eaglesoftwareteam.com/courses?filterType=dept&filterBy=" + this.search;
+              }
+
+              else { //Test to see if a course matches
+                url = "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search;
+              }
+
+            axios
+            .get(url)
+            .then(response => {
+              console.log(response.data)
+              this.courses = response.data;
+            })
+            .catch(error => {
+              console.log("ERROR: " + error.response)
+            })
+
+            if(length(this.courses) == 0 && url == "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search) //If we attempted to search for a course and found nothing, search for a professor
+            {
+              url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=Faculty" + this.search;
+
+            axios
+              .get(url)
+              .then(response => {
+                console.log(response.data)
+                this.courses = response.data;
+              })
+              .catch(error => {
+                console.log("ERROR: " + error.response)
+              })
+
+            }
           }
       },
     created() {
