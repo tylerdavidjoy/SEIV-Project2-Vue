@@ -17,7 +17,8 @@
         <tr>
            <td><label>Name:</label></td>
             <td>        
-              <input type="text" v-model="course.Course_Name" placeholder="Name" />
+              <input type="text" v-model="course.Course_Name" placeholder="Name" v-if="$route.params.new != true" disabled/>
+              <input type="text" v-model="course.Course_Name" placeholder="Name" v-else/>
             </td>
         </tr>
 
@@ -38,7 +39,7 @@
         <tr>
           <td><label>Credit:</label></td>
           <td>        
-            <input type="text" v-model="course.Course_Credit" placeholder="Credit" />
+            <input type="number" v-model="course.Course_Credit" placeholder="Credit" />
           </td>
         </tr>
 
@@ -80,7 +81,7 @@
         <tr>
           <td><label>Level:</label></td>
           <td>        
-            <input type="text" v-model="course.Course_Level" placeholder="Level" />
+            <input type="number" v-model="course.Course_Level" placeholder="Level" />
           </td>
         </tr>
 
@@ -159,13 +160,13 @@ export default {
               Course_Name: this.course.Course_Name,
               Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
               Course_Semester: this.course.Course_Semester,
-              Course_Credit: Number(this.course.Course_Credit),
+              Course_Credit: this.course.Course_Credit,
               Course_Start_Time: this.course.Course_Start_Time,
               Course_End_Time: this.course.Course_End_Time,
               Course_Room: this.course.Course_Room,
               Course_Description: this.course.Course_Description,
               Course_Department: this.course.Course_Department,
-              Course_Level: Number(this.course.Course_Number),
+              Course_Level:this.course.Course_Number,
             }
           )
           .then(() => {
