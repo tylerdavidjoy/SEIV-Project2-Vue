@@ -108,7 +108,7 @@ export default {
             .catch(error => {
               console.log("ERROR: " + error.response)
             })
-
+            console.log(this.courses.length);
             if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
             {
               console.log("Course not found, trying Professor");
