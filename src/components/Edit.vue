@@ -140,7 +140,7 @@ export default {
               Course_Room: this.course.Course_Room,
               Course_Description: this.course.Course_Description,
               Course_Department: this.course.Course_Department,
-              Course_Level: Number(this.course.Course_Number),
+              Course_Level: Number(this.course.Course_Level),
             }
           )
           .then(() => {
@@ -166,7 +166,7 @@ export default {
               Course_Room: this.course.Course_Room,
               Course_Description: this.course.Course_Description,
               Course_Department: this.course.Course_Department,
-              Course_Level: Number(this.course.Course_Number),
+              Course_Level: Number(this.course.Course_Level),
             }
           )
           .then(() => {
