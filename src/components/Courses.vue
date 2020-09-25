@@ -12,14 +12,9 @@
         <option>Course: Asc#</option>
       </select>
 
-      <input
-          type="text"
-          v-model="search"
-          placeholder="Search"
-          style="width: 40%; height: 30px"
-        />
+      <input type="text" v-model="search" placeholder="Search" style="width: 40%; height: 30px"/>
       <button v-on:click="searchItem()" style="width:7%; height: 36px; margin:10px;">Search</button>
-      <button v-on:click="addNew(true)">Add +</button> 
+      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button> 
     </div>
 
     <div v-for="(data,index) in courses" :key='index'>
@@ -230,4 +225,24 @@ a {
   .listHighlight{
     background-color: #9E9E9E;
     }
+
+  button {
+  background-color: #00D0DD;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+select {
+  background-color: #00D0DD;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 </style>
