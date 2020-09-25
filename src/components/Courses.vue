@@ -109,7 +109,7 @@ export default {
               console.log("ERROR: " + error.response)
             })
 
-            if(this.courses.length == 0 && url == "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search) //If we attempted to search for a course and found nothing, search for a professor
+            if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
             {
               console.log("Course not found, trying Professor");
               url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
