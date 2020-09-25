@@ -87,6 +87,10 @@ export default {
           },
           searchItem: function(){
             var url = "";
+              if(this.search.length < 2)
+              {
+                url = "http://team2.eaglesoftwareteam.com/courses";
+              }
               if(this.search.length == 4){ //If we need to search for a department
                 url = "http://team2.eaglesoftwareteam.com/courses?filterType=dept&filterBy=" + this.search;
               }
@@ -107,7 +111,8 @@ export default {
 
             if(this.courses.length == 0 && url == "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search) //If we attempted to search for a course and found nothing, search for a professor
             {
-              url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=Faculty" + this.search;
+              console.log("Course not found, trying Professor");
+              url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
 
             axios
               .get(url)
