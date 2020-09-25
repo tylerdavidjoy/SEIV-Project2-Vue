@@ -98,7 +98,10 @@
 <script>
 import axios from "axios";
 
-var course = {
+export default {
+  data() {
+    return {
+      course: {
         Course_Number: "",
         Course_Name: "",
         Course_Professor_Full_Name: "",
@@ -110,12 +113,7 @@ var course = {
         Course_Description: "",
         Course_Department: "",
         Course_Level: "",
-      };
-
-export default {
-  data() {
-    return {
-      course
+      }
     };
   },
   methods: {
@@ -126,17 +124,17 @@ export default {
           .post(
             "http://team2.eaglesoftwareteam.com/courses",
             {
-              Course_Number: course.Course_Number,
-              Course_Name: course.Course_Name,
-              Course_Professor_Full_Name: course.Course_Professor_Full_Name,
-              Course_Semester: course.Course_Semester,
-              Course_Credit: Number(course.Course_Credit),
-              Course_Start_Time: course.Course_Start_Time,
-              Course_End_Time: course.Course_End_Time,
-              Course_Room: course.Course_Room,
-              Course_Description: course.Course_Description,
-              Course_Department: course.Course_Department,
-              Course_Level: Number(course.Course_Number),
+              Course_Number: this.course.Course_Number,
+              Course_Name: this.course.Course_Name,
+              Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
+              Course_Semester: this.course.Course_Semester,
+              Course_Credit: Number(this.course.Course_Credit),
+              Course_Start_Time: this.course.Course_Start_Time,
+              Course_End_Time: this.course.Course_End_Time,
+              Course_Room: this.course.Course_Room,
+              Course_Description: this.course.Course_Description,
+              Course_Department: this.course.Course_Department,
+              Course_Level: Number(this.course.Course_Number),
             }
           )
           .then(() => {
@@ -152,17 +150,17 @@ export default {
             "http://team2.eaglesoftwareteam.com/courses/" +
               this.$route.params.id,
             {
-              Course_Number: course.Course_Number,
-              Course_Name: course.Course_Name,
-              Course_Professor_Full_Name: course.Course_Professor_Full_Name,
-              Course_Semester: course.Course_Semester,
-              Course_Credit: Number(course.Course_Credit),
-              Course_Start_Time: course.Course_Start_Time,
-              Course_End_Time: course.Course_End_Time,
-              Course_Room: course.Course_Room,
-              Course_Description: course.Course_Description,
-              Course_Department: course.Course_Department,
-              Course_Level: Number(course.Course_Number),
+              Course_Number: this.course.Course_Number,
+              Course_Name: this.course.Course_Name,
+              Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
+              Course_Semester: this.course.Course_Semester,
+              Course_Credit: Number(this.course.Course_Credit),
+              Course_Start_Time: this.course.Course_Start_Time,
+              Course_End_Time: this.course.Course_End_Time,
+              Course_Room: this.course.Course_Room,
+              Course_Description: this.course.Course_Description,
+              Course_Department: this.course.Course_Department,
+              Course_Level: Number(this.course.Course_Number),
             }
           )
           .then(() => {
