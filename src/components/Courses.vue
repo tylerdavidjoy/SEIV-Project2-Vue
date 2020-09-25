@@ -5,7 +5,7 @@
     <div>
       <select v-model="selected"
       @change="sort()">
-        <option>Sort</option>
+        <option disabled>Sort</option>
         <option>Course: A-Z</option>
         <option>Course: Z-A</option>
         <option>Professor: A-Z</option>
@@ -151,7 +151,7 @@ export default {
                 url = "http://team2.eaglesoftwareteam.com/courses?sort=prof";
               else if(this.selected == "Course: Asc#")
                 url = "http://team2.eaglesoftwareteam.com/courses?sort=number";
-                
+
             axios
               .get(url)
               .then(response => {
