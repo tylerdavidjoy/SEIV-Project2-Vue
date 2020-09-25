@@ -87,7 +87,7 @@ export default {
           },
           searchItem: function(){
             var url = "";
-              if(length(this.search) == 4){ //If we need to search for a department
+              if(this.search.length == 4){ //If we need to search for a department
                 url = "http://team2.eaglesoftwareteam.com/courses?filterType=dept&filterBy=" + this.search;
               }
 
@@ -105,7 +105,7 @@ export default {
               console.log("ERROR: " + error.response)
             })
 
-            if(length(this.courses) == 0 && url == "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search) //If we attempted to search for a course and found nothing, search for a professor
+            if(this.courses.length == 0 && url == "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search) //If we attempted to search for a course and found nothing, search for a professor
             {
               url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=Faculty" + this.search;
 
