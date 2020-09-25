@@ -3,6 +3,15 @@
     <h1 style="font-size:60px">Course View</h1>
 
     <div>
+      <select v-model="selected"
+      @change="sort()">
+        <option>Sort</option>
+        <option>Course: A-Z</option>
+        <option>Course: Z-A</option>
+        <option>Professor: A-Z</option>
+        <option>Course: Asc#</option>
+      </select>
+
       <input
           type="text"
           v-model="search"
@@ -75,7 +84,8 @@ export default {
     return {
       courses: [],
         hover: false,
-        search: ""
+        search: "",
+        selected: ""
       }
     },
     methods: {
@@ -121,6 +131,27 @@ export default {
               console.log("Course not found, trying Professor");
               var url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
 
+            axios
+              .get(url)
+              .then(response => {
+                console.log(response.data)
+                this.courses = response.data;
+              })
+              .catch(error => {
+                console.log("ERROR: " + error.response)
+              })
+          },
+          sort: function(){
+              var url = "";
+              if(this.selected == "Course: A-Z")
+                url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=forwards";
+              else if(this.selected == "Course: Z-A")
+                url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=backwards";
+              else if(this.selected == "Professor: A-Z")
+                url = "http://team2.eaglesoftwareteam.com/courses?sort=prof";
+              else if(this.selected == "Course: Asc#")
+                url = "http://team2.eaglesoftwareteam.com/courses?sort=number";
+                
             axios
               .get(url)
               .then(response => {
