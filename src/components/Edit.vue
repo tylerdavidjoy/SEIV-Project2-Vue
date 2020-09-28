@@ -1,81 +1,260 @@
 <template>
   <div>
-    <h1 style="font-size:60px">Edit Course</h1>
-    <div>
-      <p>Number:</p>
-      <input v-model="cNumber" placeholder="Number" />
+    <h1 v-if="$route.params.new != true" style="font-size:60px">
+      Edit Course {{ $route.params.id }}
+    </h1>
+    <h1 v-else style="font-size:60px">Add Course</h1>
 
-      <p>Name:</p>
-      <input v-model="cName" placeholder="Name" />
+    <table class = "list">
+      <tbody >
+         <tr>
+           <td><label>Number:</label></td>
+           <td>        
+             <input type="text" v-model="course.Course_Number" placeholder="Number"/>
+            </td>
+        </tr>
 
-      <p>Professor:</p>
-      <input v-model="cProfessor" placeholder="Professor" />
+        <tr>
+           <td><label>Name:</label></td>
+            <td>        
+              <input type="text" v-model="course.Course_Name" placeholder="Name" v-if="$route.params.new != true" disabled/>
+              <input type="text" v-model="course.Course_Name" placeholder="Name" v-else/>
+            </td>
+        </tr>
 
-      <p>Semester:</p>
-      <input v-model="cSemester" placeholder="Semester" />
+        <tr>
+          <td><label>Professor:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Professor_Full_Name" placeholder="Professor" />
+          </td>
+        </tr>
 
-      <p>Credit:</p>
-      <input v-model="cCredit" placeholder="Credit" />
+        <tr>
+          <td><label>Semester:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Semester" placeholder="Semester" />
+          </td>
+        </tr>
 
-      <p>Start Time:</p>
-      <input v-model="cStartTime" placeholder="Start Time" />
+        <tr>
+          <td><label>Credit:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Credit" placeholder="Credit" />
+          </td>
+        </tr>
 
-      <p>End Time:</p>
-      <input v-model="cEndTime" placeholder="End Time" />
+        <tr>
+          <td><label>Start Time:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Start_Time" placeholder="Start Time" />
+          </td>
+        </tr>
 
-      <p>Room:</p>
-      <input v-model="cRoom" placeholder="Room" />
+        <tr>
+          <td><label>End Time:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_End_Time" placeholder="End Time" />
+          </td>
+        </tr>
 
-      <p>Description:</p>
-      <input v-model="cDescription" placeholder="Description" />
+        <tr>
+          <td><label>Room:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Room" placeholder="Room" />
+          </td>
+        </tr>
 
-      <p>Department:</p>
-      <input v-model="cDepartment" placeholder="Department" />
+        <tr>
+          <td><label>Description:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Description" placeholder="Description" />
+          </td>
+        </tr>
 
-      <p>Level:</p>
-      <input v-model="cLevel" placeholder="Level" />
+        <tr>
+          <td><label>Department:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Department" placeholder="Department" />
+          </td>
+        </tr>
 
-      <button v-on:click="cSave()">Save</button>
-      <button v-on:click="backToList()">Cancel</button>
-      <button v-on:click="cDelete()">Delete</button>
-    </div>
+        <tr>
+          <td><label>Level:</label></td>
+          <td>        
+            <input type="text" v-model="course.Course_Level" placeholder="Level" />
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+      <div>
+        <button v-on:click="cSave($route.params.new)">Save</button>
+        <button v-on:click="backToList()">Cancel</button>
+        <button
+          v-on:click="cDelete($route.params.new)"
+          v-if="$route.params.new != true"
+        >
+          Delete
+        </button>
+      </div>
+
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "Edit",
   data() {
     return {
-      cNumber: "",
-      cName: "",
-      cProfessor: "",
-      cSemester: "",
-      cCredit: "",
-      cStartTime: "",
-      cEndTime: "",
-      cRoom: "",
-      cDescription: "",
-      cDepartment: "",
-      cLevel: ""
+      course: {
+        Course_Number: "",
+        Course_Name: "",
+        Course_Professor_Full_Name: "",
+        Course_Semester: "",
+        Course_Credit: "",
+        Course_Start_Time: "",
+        Course_End_Time: "",
+        Course_Room: "",
+        Course_Description: "",
+        Course_Department: "",
+        Course_Level: "",
+      }
     };
   },
   methods: {
-        cSave: function(){
-            // Save the course
-
-            // Go back to select page
+    cSave: function(addNew) {
+      // Save the course
+      if (addNew) {
+        axios
+          .post(
+            "http://team2.eaglesoftwareteam.com/courses",
+            {
+              Course_Number: this.course.Course_Number,
+              Course_Name: this.course.Course_Name,
+              Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
+              Course_Semester: this.course.Course_Semester,
+              Course_Credit: Number(this.course.Course_Credit),
+              Course_Start_Time: this.course.Course_Start_Time,
+              Course_End_Time: this.course.Course_End_Time,
+              Course_Room: this.course.Course_Room,
+              Course_Description: this.course.Course_Description,
+              Course_Department: this.course.Course_Department,
+              Course_Level: Number(this.course.Course_Level),
+            }
+          )
+          .then(() => {
             this.backToList();
-          },
-        cDelete: function(){
-            // Delete the course
-
-            // Go back to select page
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+            // Display error and don't change page
+          });
+      } else {
+        axios
+          .put(
+            "http://team2.eaglesoftwareteam.com/courses/" +
+              this.$route.params.id,
+            {
+              Course_Number: this.course.Course_Number,
+              Course_Name: this.course.Course_Name,
+              Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
+              Course_Semester: this.course.Course_Semester,
+              Course_Credit: Number(this.course.Course_Credit),
+              Course_Start_Time: this.course.Course_Start_Time,
+              Course_End_Time: this.course.Course_End_Time,
+              Course_Room: this.course.Course_Room,
+              Course_Description: this.course.Course_Description,
+              Course_Department: this.course.Course_Department,
+              Course_Level: Number(this.course.Course_Level),
+            }
+          )
+          .then(() => {
             this.backToList();
-          },
-        backToList: function(){
-          this.$router.push('/listview');
-        }
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+            // Display  on page and ddon't change page
+          });
       }
+      // Go back to select page
+      this.backToList();
+    },
+    cDelete: function(addNew) {
+      // Delete the course
+      if (!addNew) {
+        axios
+          .delete(
+            "http://team2.eaglesoftwareteam.com/courses/" +
+              this.$route.params.id
+          )
+          .then(() => {
+            this.backToList();
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+          });
+      }
+    },
+    backToList: function() {
+      this.$router.push("/");
+    },
+  },
+  created() {
+    if (!this.$route.params.new) {
+      axios
+        .get(
+          "http://team2.eaglesoftwareteam.com/courses/id=" + this.$route.params.id
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.course = response.data;
+        })
+        .catch((error) => {
+          console.log("ERROR: " + error.response);
+        });
+    }
+  },
 };
 </script>
+
+<style>
+ label {
+  margin:auto;
+  padding:10px;
+}
+
+input {
+  margin:5px;
+  padding:10px;
+}
+
+.list {
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom: 10px;
+  width: 35%;
+  border: 6px solid #00D0DD;
+  padding: 10px;
+  background-color: #C0C0C0;
+  text-align: center;
+}
+
+tbody {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  background-color: #00D0DD;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin:5px;
+}
+
+</style>

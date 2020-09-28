@@ -6,7 +6,6 @@
 
 <script>
 import Courses from "@/components/Courses.vue";
-
 export default {
   name: "listview",
   components: {
