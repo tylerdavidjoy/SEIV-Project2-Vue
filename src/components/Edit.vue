@@ -197,7 +197,7 @@ export default {
       }
     },
     backToList: function() {
-      this.$router.push("/");
+      this.$router.push("/list");
     },
   },
   created() {
