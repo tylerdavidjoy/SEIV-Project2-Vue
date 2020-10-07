@@ -38,6 +38,13 @@ const routes = [
     props: true,
     component: () =>
       import("../views/edit.vue")
+  },
+  {
+    path:"/students",
+    name:"StudentList",
+    props: true,
+    component: () =>
+      import("../views/studentlist.vue")
   }
 ];
 
