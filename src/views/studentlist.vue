@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
-    <Courses />
+    <Students />
   </div>
 </template>
 
 <script>
-import Courses from "@/components/StudentList.vue";
+import Students from "@/components/StudentList.vue";
 export default {
   name: "studentlist",
   components: {
