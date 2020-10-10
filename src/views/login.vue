@@ -42,7 +42,7 @@ export default {
       document.head.appendChild(recaptchaScript)
       
       this.polling = setInterval(() => {
-      if(window.user != ""){
+      if(window.user){
         this.user = window.user;
         this.$router.push("/list");
       }
