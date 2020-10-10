@@ -18,7 +18,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import Signin from "@/components/Signin.vue";
 import ForgotPass from "@/components/ForgotPass.vue";
@@ -30,8 +29,29 @@ export default {
   },
   data() {
     return {
-    login: true
+    login: true,
+    user: {
+
+    },
+    polling: null
     }
+  },
+  mounted(){
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://apis.google.com/js/platform.js')
+      document.head.appendChild(recaptchaScript)
+      
+      this.polling = setInterval(() => {
+      if(window.user != ""){
+        this.user = window.user;
+        this.$router.push("/list");
+      }
+  }, 1000)
+
+  },
+
+  beforeDestroy() {
+    clearInterval(this.polling);
   }
 };
 </script>
