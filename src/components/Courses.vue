@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
-
+    <p>{{user.name}}</p>
     <div>
       <select v-model="selected"
       @change="sort()" style="margin:10px; height:20px">
@@ -77,7 +77,8 @@ export default {
       courses: [],
         hover: false,
         search: "",
-        selected: ""
+        selected: "",
+        user: window.user
       }
     },
     methods: {
