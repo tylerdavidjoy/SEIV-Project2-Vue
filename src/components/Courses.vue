@@ -14,7 +14,8 @@
 
       <input type="text" v-model="search" placeholder="Search" style="width: 40%; height: 30px"/>
       <button v-on:click="searchItem()" style="width:7%; height: 36px; margin:10px;">Search</button>
-      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button> 
+      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button>
+      <button v-on:click="viewStudents()" style="width:4%; height: 25px; margin:10px;">Students</button>
     </div>
 
     <div v-for="(data,index) in courses" :key='index'>
@@ -87,6 +88,9 @@ export default {
           },
         addNew: function(){
           this.$router.push({name: 'New', params: {new:true}})
+          },
+          viewStudents: function(){
+          this.$router.push({name: 'StudentList'})
           },
           searchItem: function(){
             var url = "";
