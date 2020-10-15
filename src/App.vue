@@ -19,7 +19,13 @@ export default {
           console.log('User signed out.');
             });
         
-        window.location.href = 'http://localhost:8080/';
+        if(process.env.NODE_ENV === 'development'){
+          window.location.href = 'http://localhost:8080/';
+        }
+        else
+        {
+          window.location.href = 'http://team2.eaglesoftwareteam.com/';
+        }
       }
     }
 }
