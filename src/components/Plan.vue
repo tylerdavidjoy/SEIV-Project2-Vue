@@ -129,11 +129,11 @@ export default {
      }
   },
   created(){
-    if(this.$router.params.semester){
+    if(this.$route.params.semester){
       var temp = this.getCourse()
       var course = {number: temp.number, name:temp.name, credits: temp.credits}
 
-      switch(this.$router.params.semester){
+      switch(this.$route.params.semester){
         case "freshmanF":
           this.semesters.freshmanF.push(course)
           break;
