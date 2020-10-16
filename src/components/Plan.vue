@@ -11,14 +11,14 @@
            <td><label>Credits</label></td>
         </tr>
         
-        <tr>
-           <td><input type="text" placeholder="number" /></td>
-           <td><input type="text" placeholder="name" /></td>
-           <td><input type="text" placeholder="credits" /></td>
+        <tr v-for="(data,index) in semesters.freshmanF" :key='index'>
+           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
+           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
+           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
         </tr>
 
         <tr>
-          <button v-on:click="addClass('freshmanF')">+ Add Class</button>
+          <button v-on:click="selectCourse('freshmanF')">+ Add Class</button>
         </tr>
       </tbody>
     </table>
@@ -32,14 +32,14 @@
            <td><label>Credits</label></td>
         </tr>
         
-        <tr>
-           <td><input type="text" placeholder="number" /></td>
-           <td><input type="text" placeholder="name" /></td>
-           <td><input type="text" placeholder="credits" /></td>
+        <tr v-for="(data,index) in semesters.sophmoreF" :key='index'>
+           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
+           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
+           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
         </tr>
 
         <tr>
-          <button v-on:click="addClass('sophmoreF')">+ Add Class</button>
+          <button v-on:click="selectCourse('sophmoreF')">+ Add Class</button>
         </tr>
       </tbody>
     </table>
@@ -53,14 +53,14 @@
            <td><label>Credits</label></td>
         </tr>
         
-        <tr>
-           <td><input type="text" placeholder="number" /></td>
-           <td><input type="text" placeholder="name" /></td>
-           <td><input type="text" placeholder="credits" /></td>
+        <tr v-for="(data,index) in semesters.juniorF" :key='index'>
+           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
+           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
+           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
         </tr>
 
         <tr>
-          <button v-on:click="addClass('juniorF')">+ Add Class</button>
+          <button v-on:click="selectCourse('juniorF')">+ Add Class</button>
         </tr>
       </tbody>
     </table>
@@ -74,14 +74,14 @@
            <td><label>Credits</label></td>
         </tr>
         
-        <tr>
-           <td><input type="text" placeholder="number" /></td>
-           <td><input type="text" placeholder="name" /></td>
-           <td><input type="text" placeholder="credits" /></td>
+        <tr v-for="(data,index) in semesters.seniorF" :key='index'>
+           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
+           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
+           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
         </tr>
 
         <tr>
-          <button v-on:click="addClass('seniorF')">+ Add Class</button>
+          <button v-on:click="selectCourse('seniorF')">+ Add Class</button>
         </tr>
       </tbody>
     </table>
@@ -108,7 +108,7 @@ export default {
     };
   },
   methods:{
-    addClass(sem) {
+    selectCourse(sem) {
       this.$router.push({name: 'ListView', params: {semester:sem}})
     },
      getCourse(){
@@ -120,45 +120,47 @@ export default {
         .then((response) => {
           console.log(response.data);
           course = response.data;
+          this.addCourse(course)
         })
         .catch((error) => {
           console.log("ERROR: " + error.response);
         });
 
         return course;
+     },
+     addCourse(temp){
+      var course = {number: temp.number, name:temp.name, credits: temp.credits}
+      switch(this.$route.params.semester){
+              case "freshmanF":
+                this.semesters.freshmanF.push(course)
+                break;
+              case "freshmanS":
+                this.semesters.freshmanS.push(course);
+                break;
+              case "sophmoreF":
+                this.semesters.sophmoreF.push(course);
+                break;
+              case "sophmoreS":
+                this.semesters.sophmoreS.push(course);
+                break;
+              case "juniorF":
+                this.semesters.juniorF.push(course);
+                break;
+              case "juniorS":
+                this.semesters.juniorS.push(course);
+                break;
+              case "seniorF":
+                this.semesters.seniorF.push(course);
+                break;
+              case "seniorS":
+                this.semesters.seniorS.push(course);
+                break;
+            }
      }
   },
   created(){
     if(this.$route.params.semester){
-      var temp = this.getCourse()
-      var course = {number: temp.number, name:temp.name, credits: temp.credits}
-
-      switch(this.$route.params.semester){
-        case "freshmanF":
-          this.semesters.freshmanF.push(course)
-          break;
-        case "freshmanS":
-          this.semesters.freshmanS.push(course);
-          break;
-        case "sophmoreF":
-          this.semesters.sophmoreF.push(course);
-          break;
-        case "sophmoreS":
-          this.semesters.sophmoreS.push(course);
-          break;
-        case "juniorF":
-          this.semesters.juniorF.push(course);
-          break;
-        case "juniorS":
-          this.semesters.juniorS.push(course);
-          break;
-        case "seniorF":
-          this.semesters.seniorF.push(course);
-          break;
-        case "seniorS":
-          this.semesters.seniorS.push(course);
-          break;
-      }
+      this.getCourse();      
     }
   }
 };
