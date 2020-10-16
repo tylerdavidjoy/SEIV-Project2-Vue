@@ -86,7 +86,7 @@ export default {
     methods: {
         view: function(courseID){
             if(this.$route.params.semester){
-                this.$router.push({name: 'plan', params: {id:courseID, semester:this.$route.params.semester}})
+                this.$router.push({name: 'Plan', params: {id:courseID, semester:this.$route.params.semester}})
             }
             else{
               this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
