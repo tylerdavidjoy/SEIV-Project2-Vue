@@ -1,8 +1,8 @@
 <template>
   <div class="main">
-    <h1 style="font-size:60px">Course View</h1>
-    <p>{{user.name}}</p>
-    <button v-on:click="planPage()">PlanPage</button>
+    <h1 style="font-size:60px">Students</h1>
+
+    <!--
     <div>
       <select v-model="selected"
       @change="sort()" style="margin:10px; height:20px">
@@ -15,55 +15,19 @@
 
       <input type="text" v-model="search" placeholder="Search" style="width: 40%; height: 30px"/>
       <button v-on:click="searchItem()" style="width:7%; height: 36px; margin:10px;">Search</button>
-      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button>
-      <button v-on:click="viewStudents()" style="width:4%; height: 25px; margin:10px;">Students</button>
+      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button> 
     </div>
+    -->
 
-    <div v-for="(data,index) in courses" :key='index'>
-      <button class="list" v-on:click="view(data.Course_Number)">
+    <div v-for="(data,index) in students" :key='index'>
+      <button class="list" v-on:click="view(data.Student_ID)">
         <tbody>
           <tr> 
-            <td class="list-content-large">{{data.Course_Name}}</td>
+            <td class="list-content-large">{{data.Student_Name}}</td>
             <td></td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">Credits: {{data.Course_Credit}}</td>
           </tr>
-
-          <tr> 
-            <td class="list-content-large">{{data.Course_Number}}</td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small" v-if="data.Course_Semester != '' " >{{data.Course_Semester}}</td>
-            <td class="list-content-small" v-else >Semester: TBD</td>
-          </tr>
-
-          <tr> 
-            <td></td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small" v-if="data.Course_Start_Time != NULL">{{data.Course_Start_Time}}</td>
-            <td class="list-content-small" v-else>Time: TBD</td>
-          </tr>
-
-          <tr> 
-            <td></td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.Course_Room}}</td>
-          </tr>
-
-          <tr> 
-            <td></td>
-            <td></td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">{{data.Course_Professor_Full_Name}}</td>
-          </tr>
-
-          <tr> 
-            <td class="list-content-description" v-if="data.Course_Description != '' ">{{data.Course_Description}} </td>
-            <td class="list-content-description" v-else >No Course Description</td>
-          </tr>
-
         </tbody>
       </button>
     </div>
@@ -71,33 +35,23 @@
 </template>
 
 <script>
-import axios from 'axios'
+//import axios from 'axios'
 export default {
-  name: "Courses",
+  name: "Students",
   data() {
     return {
-      courses: [],
+      students: [],
         hover: false,
         search: "",
-        selected: "",
-        user: window.user
+        selected: ""
       }
-    },
+    }/*,
     methods: {
         view: function(courseID){
-            if(this.$router.params.semester){
-                this.$router.push({name: 'plan', params: {id:courseID, semester:this.$router.params.semester}})
-            }
-            else{
-              this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
-            }
-
+            this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
           },
         addNew: function(){
           this.$router.push({name: 'New', params: {new:true}})
-          },
-          viewStudents: function(){
-          this.$router.push({name: 'StudentList'})
           },
           searchItem: function(){
             var url = "";
@@ -165,9 +119,6 @@ export default {
               .catch(error => {
                 console.log("ERROR: " + error.response)
               })
-          },
-          planPage(){
-            this.$router.push({name: 'Plan'})
           }
       },
     created() {
@@ -181,7 +132,7 @@ export default {
       console.log("ERROR: " + error.response)
     })
   }
-};
+*/};
 </script>
 
 
