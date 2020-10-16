@@ -46,7 +46,14 @@ const routes = [
     props: true,
     component: () =>
       import("../views/studentlist.vue")
-  }
+  },
+  {
+    path:"/plan",
+    name:"Plan",
+    props: true,
+    component: () =>
+      import("../views/buildPlan.vue")
+  },
 ];
 
 const router = new VueRouter({

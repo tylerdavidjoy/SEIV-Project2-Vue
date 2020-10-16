@@ -2,6 +2,7 @@
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
     <p>{{user.name}}</p>
+    <button v-on:click="planPage()">PlanPage</button>
     <div>
       <select v-model="selected"
       @change="sort()" style="margin:10px; height:20px">
@@ -84,7 +85,13 @@ export default {
     },
     methods: {
         view: function(courseID){
-            this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
+            if(this.$router.params.semester){
+                this.$router.push({name: 'plan', params: {id:courseID, semester:this.$router.params.semester}})
+            }
+            else{
+              this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
+            }
+
           },
         addNew: function(){
           this.$router.push({name: 'New', params: {new:true}})
@@ -158,6 +165,9 @@ export default {
               .catch(error => {
                 console.log("ERROR: " + error.response)
               })
+          },
+          planPage(){
+            this.$router.push({name: 'Plan'})
           }
       },
     created() {
