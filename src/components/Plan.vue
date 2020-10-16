@@ -12,9 +12,9 @@
         </tr>
         
         <tr v-for="(data,index) in semesters.freshmanF" :key='index'>
-           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
-           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
-           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
         </tr>
 
         <tr>
@@ -33,9 +33,9 @@
         </tr>
         
         <tr v-for="(data,index) in semesters.sophmoreF" :key='index'>
-           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
-           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
-           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
         </tr>
 
         <tr>
@@ -54,9 +54,9 @@
         </tr>
         
         <tr v-for="(data,index) in semesters.juniorF" :key='index'>
-           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
-           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
-           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
         </tr>
 
         <tr>
@@ -75,9 +75,9 @@
         </tr>
         
         <tr v-for="(data,index) in semesters.seniorF" :key='index'>
-           <td><input type="text" placeholder="number" disabled/>{{data.Course_Number}}</td>
-           <td><input type="text" placeholder="name" disabled/>{{data.Course_Name}}</td>
-           <td><input type="text" placeholder="credits" disabled/>{{data.Course_Credit}}</td>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
         </tr>
 
         <tr>
