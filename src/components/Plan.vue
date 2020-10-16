@@ -129,7 +129,7 @@ export default {
         return course;
      },
      addCourse(temp){
-      var course = {number: temp.number, name:temp.name, credits: temp.credits}
+      var course = {Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit}
       switch(this.$route.params.semester){
               case "freshmanF":
                 this.semesters.freshmanF.push(course)
