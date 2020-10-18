@@ -2,8 +2,8 @@
   <div>
     <h1 style="margin-top:2%;">Plan</h1>
 
-    <table>
-      <h3>Freshman Fall</h3>
+    <table style="float: left">
+      <h3 class="left">Freshman Fall</h3>
       <tbody>
          <tr>
            <td><label>Number</label></td>
@@ -23,8 +23,31 @@
       </tbody>
     </table>
 
-    <table>
-      <h3>Sophmore Fall</h3>
+    <table style="display: inline-block;">
+      <h3 class="right">Freshman Spring</h3>
+      <tbody>
+         <tr>
+           <td><label>Number</label></td>
+           <td><label>Name</label></td>
+           <td><label>Credits</label></td>
+        </tr>
+        
+        <tr v-for="(data,index) in semesters.freshmanS" :key='index'>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
+        </tr>
+
+        <tr>
+          <button v-on:click="selectCourse('freshmanS')">+ Add Class</button>
+        </tr>
+      </tbody>
+    </table>
+
+  <div/>
+
+    <table style="float:left;">
+      <h3 class="left">Sophmore Fall</h3>
       <tbody>
          <tr>
            <td><label>Number</label></td>
@@ -44,8 +67,31 @@
       </tbody>
     </table>
 
-      <table>
-      <h3>Junior Fall</h3>
+    <table style="display: inline-block;">
+      <h3 class="right">Sophmore Spring</h3>
+      <tbody>
+         <tr>
+           <td><label>Number</label></td>
+           <td><label>Name</label></td>
+           <td><label>Credits</label></td>
+        </tr>
+        
+        <tr v-for="(data,index) in semesters.sophmoreS" :key='index'>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
+        </tr>
+
+        <tr>
+          <button v-on:click="selectCourse('sophmoreS')">+ Add Class</button>
+        </tr>
+      </tbody>
+    </table>
+
+    <div/>
+
+      <table style="float: left;">
+      <h3 class="left">Junior Fall</h3>
       <tbody>
          <tr>
            <td><label>Number</label></td>
@@ -65,8 +111,31 @@
       </tbody>
     </table>
 
-      <table>
-      <h3>Senior Fall</h3>
+    <table style="display: inline-block;">
+      <h3 class="right">Junior Spring</h3>
+      <tbody>
+         <tr>
+           <td><label>Number</label></td>
+           <td><label>Name</label></td>
+           <td><label>Credits</label></td>
+        </tr>
+        
+        <tr v-for="(data,index) in semesters.juniorS" :key='index'>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
+        </tr>
+
+        <tr>
+          <button v-on:click="selectCourse('juniorS')">+ Add Class</button>
+        </tr>
+      </tbody>
+    </table>
+
+    <div/>
+
+      <table style="float: left;">
+      <h3 class="left">Senior Fall</h3>
       <tbody>
          <tr>
            <td><label>Number</label></td>
@@ -82,6 +151,27 @@
 
         <tr>
           <button v-on:click="selectCourse('seniorF')">+ Add Class</button>
+        </tr>
+      </tbody>
+    </table>
+
+      <table style="display: inline-block;">
+      <h3 class="right">Senior Spring</h3>
+      <tbody>
+         <tr>
+           <td><label>Number</label></td>
+           <td><label>Name</label></td>
+           <td><label>Credits</label></td>
+        </tr>
+        
+        <tr v-for="(data,index) in semesters.seniorS" :key='index'>
+           <td><input type="text" placeholder="number" v-model="data.Course_Number" disabled/></td>
+           <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
+           <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled/></td>
+        </tr>
+
+        <tr>
+          <button v-on:click="selectCourse('seniorS')">+ Add Class</button>
         </tr>
       </tbody>
     </table>
@@ -174,10 +264,16 @@ export default {
 table {
   margin: 5%;
 }
-h3{
+.left{
   text-align:center;
   width:300%
 }
+
+.right{
+  text-align:center;
+  width:150%;
+}
+
 .list {
   margin-left:auto;
   margin-right:auto;
