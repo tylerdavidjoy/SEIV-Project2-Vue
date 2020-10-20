@@ -7,13 +7,13 @@
       </span>
   </div>
 
-  <table>
+  <table :class="empty ? '' : 'emp' ">
     <tbody>
       
       <tr>
-        <td style="margin:10%;">
+        <td :class ="empty ? 'pad1' : 'pad2' " style="margin:10%;">
 
-          <table>
+          <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{frF}}</pre></h3>
             <tbody>
               <tr>
@@ -34,13 +34,10 @@
             </tbody>
           </table>
 
-        </td>
-        <td style="width:40%;">
-          <div style="width:90%;"></div>
-        </td>
-        <td>
+        
+        <td :class ="empty ? 'pad1' : 'pad2' ">
 
-            <table>
+            <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{frS}}</pre></h3>
             <tbody>
               <tr>
@@ -67,9 +64,9 @@
 
 
       <tr>
-        <td style="margin:10%">
+        <td :class ="empty ? 'pad1' : 'pad2' " style="margin:10%">
 
-          <table>
+          <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{soF}}</pre></h3>
             <tbody>
               <tr>
@@ -91,13 +88,11 @@
           </table>
 
         </td>
-        <td style="width:40%;">
-          <div style="width:90%;"></div>
-        </td>
-        <td>
 
-            <table>
-            <h3 class="left"><pre>{{soS}}</pre></h3>
+        <td :class ="empty ? 'pad1' : 'pad2' ">
+
+            <table :class="empty ? '' : 'emp' ">
+            <h3  class="left"><pre>{{soS}}</pre></h3>
             <tbody>
               <tr>
                 <td><label>Number</label></td>
@@ -123,9 +118,9 @@
 
 
     <tr>
-        <td style="margin:10%">
+        <td :class ="empty ? 'pad1' : 'pad2' " style="margin:10%">
 
-          <table>
+          <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{juF}}</pre></h3>
             <tbody>
               <tr>
@@ -147,12 +142,10 @@
           </table>
 
         </td>
-        <td style="width:40%;">
-          <div style="width:90%;"></div>
-        </td>
-        <td>
 
-            <table>
+        <td :class ="empty ? 'pad1' : 'pad2' ">
+
+            <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{juS}}</pre></h3>
             <tbody>
               <tr>
@@ -178,9 +171,9 @@
       </tr>
 
         <tr>
-        <td style="margin:10%">
+        <td :class ="empty ? 'pad1' : 'pad2' " style="margin:10%">
 
-          <table>
+          <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{seF}}</pre></h3>
             <tbody>
               <tr>
@@ -202,12 +195,10 @@
           </table>
 
         </td>
-        <td style="width:40%;">
-          <div style="width:90%;"></div>
-        </td>
-        <td>
 
-            <table>
+        <td :class ="empty ? 'pad1' : 'pad2' ">
+
+            <table :class="empty ? '' : 'emp' ">
             <h3 class="left"><pre>{{seS}}</pre></h3>
             <tbody>
               <tr>
@@ -240,7 +231,7 @@
 
 <script>
 import axios from "axios";
-
+//{Course_Number: "ACCT-0010", Course_Name:"Accounting Lower Division", Course_Credit: "0"}
 export default {
   data() {
     return {
@@ -262,6 +253,7 @@ export default {
       juS: " Junior Spring ",
       seF: "  Senior Fall  ",
       seS: " Senior Spring ",
+      empty: true
     };
   },
   methods:{
@@ -289,25 +281,29 @@ export default {
       var course = {Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit}
       switch(this.$route.params.semester){
               case "freshmanF":
-                this.semesters.freshmanF.push(course)
+                this.semesters.freshmanF.push(course);
+                this.empty = false;
                 break;
               case "freshmanS":
                 this.semesters.freshmanS.push(course);
                 break;
               case "sophmoreF":
                 this.semesters.sophmoreF.push(course);
+                this.empty = false;
                 break;
               case "sophmoreS":
                 this.semesters.sophmoreS.push(course);
                 break;
               case "juniorF":
                 this.semesters.juniorF.push(course);
+                this.empty = false;
                 break;
               case "juniorS":
                 this.semesters.juniorS.push(course);
                 break;
               case "seniorF":
                 this.semesters.seniorF.push(course);
+                this.empty = false;
                 break;
               case "seniorS":
                 this.semesters.seniorS.push(course);
@@ -319,17 +315,31 @@ export default {
     if(this.$route.params.semester){
       this.getCourse();      
     }
+
+      if(this.semesters.freshmanF.length > 0 || this.semesters.sophmoreF.length > 0 || this.semesters.juniorF.length > 0 || this.semesters.seniorF.length > 0){
+        this.empty = false;
+      }
   }
+
+
 };
 </script>
 
 <style>
+.pad1 {
+  padding:0px 250px 50px 150px;
+}
+
+.pad2{
+  padding:0px 60px 0px 60px;
+}
+
  label {
   margin:auto;
   padding:10px;
 }
-table {
-  margin: 5%;
+.emp{
+  margin:5%;
 }
 
 .left{
@@ -368,6 +378,11 @@ button {
   font-size: 16px;
   margin:5px;
   width:300%;
+}
+
+input {
+  margin: 0px;
+  padding: 0px;
 }
 
 </style>
