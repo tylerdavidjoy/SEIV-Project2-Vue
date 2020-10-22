@@ -54,6 +54,13 @@ const routes = [
     component: () =>
       import("../views/buildPlan.vue")
   },
+  {
+    path:"/profile",
+    name:"Profile",
+    props: true,
+    component: () =>
+      import("../views/profile.vue")
+  },
 ];
 
 const router = new VueRouter({
