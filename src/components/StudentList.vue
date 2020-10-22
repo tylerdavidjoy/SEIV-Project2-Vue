@@ -18,15 +18,19 @@
       <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button> 
     </div>
     -->
-
     <div v-for="(data,index) in students" :key='index'>
-      <button class="list" v-on:click="view(data.Student_ID)">
+      <button class="list" v-on:click="view(data)">
         <tbody>
           <tr> 
-            <td class="list-content-large">{{data.Student_Name}}</td>
-            <td></td>
+            <td class="list-content-small">Name: {{data.Student_Name}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Credits: {{data.Course_Credit}}</td>
+            <td class="list-content-small">ID Number: {{data.Student_ID}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">Classification: {{data.Student_Classification}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">Major: {{data.Student_Major}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">GPA: {{data.Student_GPA}}</td>
           </tr>
         </tbody>
       </button>
@@ -40,16 +44,38 @@ export default {
   name: "Students",
   data() {
     return {
-      students: [],
+      students: [
+        {
+          Student_Name:"John",
+          Student_ID:1590393,
+          Student_Advisor:"Dr. Doe",
+          Student_Hours_Taken:98,
+          Student_GPA:3.5,
+          Student_Classification:"Senior",
+          Student_Hours_To_Graduate:32,
+          Student_Major:"Computer Science",
+        },
+        {
+          Student_Name:"Lacey",
+          Student_ID:1420693,
+          Student_Advisor:"Dr. Doe",
+          Student_Hours_Taken:32,
+          Student_GPA:4.0,
+          Student_Classification:"Sophomore",
+          Student_Hours_To_Graduate:98,
+          Student_Major:"Accounting",
+        }
+      ],
         hover: false,
         search: "",
         selected: ""
       }
-    }/*,
+      
+    },
     methods: {
-        view: function(courseID){
-            this.$router.push({name: 'Edit', params: {id:courseID, new:false}})
-          },
+        view: function(data){
+            this.$router.push({name: 'Profile', params: {name:data.Student_Name, student:data}})
+          },/*
         addNew: function(){
           this.$router.push({name: 'New', params: {new:true}})
           },
@@ -131,8 +157,9 @@ export default {
     .catch(error => {
       console.log("ERROR: " + error.response)
     })
-  }
-*/};
+  */}
+
+};
 </script>
 
 
