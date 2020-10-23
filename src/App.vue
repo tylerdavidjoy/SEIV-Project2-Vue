@@ -2,8 +2,8 @@
   <div id="app">
     <meta name="google-signin-client_id" content="761915308223-ua9pjnk2765b2qd88dda10htmhlu64js.apps.googleusercontent.com">
     <div id="nav" class="nav">
-      <span><button v-if="$route.name != 'Login'" v-on:click="goHome()" class="btn btn-dark btn-lg" style="margin-left: 1700%; display: inline-block" >Home</button></span>
-      <span><button v-if="$route.name != 'Login'" v-on:click="signOut()" class="btn btn-dark btn-lg" style="margin-left: 1200%; width:100%; display: inline-block" >Log Out</button></span>
+      <span><button v-if="$route.name != 'Login'" v-on:click="goHome()" class="btn btn-dark btn-lg" style="margin-left: 1600%; display: inline-block" >Home</button></span>
+      <span><button v-if="$route.name != 'Login'" v-on:click="signOut()" class="btn btn-dark btn-lg" style="margin-left: 1150%; width:100%; display: inline-block" >Log Out</button></span>
       <span><button v-if="$route.name != 'Login'" v-on:click="userPage()" class="btn btn-dark btn-lg" style="margin-left: -200%; width:100%; display: inline-block" >user</button></span>
     </div>
     <router-view />
