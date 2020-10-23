@@ -3,7 +3,7 @@
     <div style="margin-bottom: 5%;">
       <span> 
         <h1 style="margin-top:2%; margin-right:-22%; display: inline-block;">Plan</h1>
-        <button v-on:click="createPDF()" style="width:10%; float:right; margin-top:2%; margin-right: 15%;">Save as PDF</button>
+        <button class="customButton" v-on:click="createPDF()" style="width:10%; float:right; margin-top:2%; margin-right: 15%;">Save as PDF</button>
       </span>
   </div>
 
@@ -29,7 +29,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('freshmanF')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('freshmanF')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -53,7 +53,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('freshmanS')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('freshmanS')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -82,7 +82,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('sophmoreF')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('sophmoreF')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -107,7 +107,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('sophmoreS')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('sophmoreS')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -136,7 +136,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('juniorF')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('juniorF')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -161,7 +161,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('juniorS')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('juniorS')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -189,7 +189,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('seniorF')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('seniorF')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -214,7 +214,7 @@
               </tr>
 
               <tr>
-                <button v-on:click="selectCourse('seniorS')">+ Add Class</button>
+                <button class="customButton" v-on:click="selectCourse('seniorS')">+ Add Class</button>
               </tr>
             </tbody>
           </table>
@@ -445,7 +445,7 @@ tbody {
   margin-right: auto;
 }
 
-button {
+.customButton {
   background-color:silver;
   border: none;
   padding: 15px 32px;
