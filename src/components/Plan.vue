@@ -3,7 +3,7 @@
     <div style="margin-bottom: 5%;">
       <span> 
         <h1 style="margin-top:2%; margin-right:-22%; display: inline-block;">Plan</h1>
-        <button style="width:10%; float:right; margin-top:2%; margin-right: 15%;">Save as PDF</button>
+        <button v-on:click="createPDF()" style="width:10%; float:right; margin-top:2%; margin-right: 15%;">Save as PDF</button>
       </span>
   </div>
 
@@ -231,6 +231,9 @@
 
 <script>
 import axios from "axios";
+import jsPDF  from "jspdf";
+
+
 //{Course_Number: "ACCT-0010", Course_Name:"Accounting Lower Division", Course_Credit: "0"}
 export default {
   data() {
@@ -309,7 +312,81 @@ export default {
                 this.semesters.seniorS.push(course);
                 break;
             }
-     }
+     },
+    createPDF(){
+      var leftCol = 30;
+      var lineSpacing = 8;
+      var pagePtr = 0;
+
+      var doc = new jsPDF();
+      doc.text("Plan", 100, 10);
+
+      doc.text("Freshman Fall", leftCol, 30);
+      pagePtr += 30;
+      for(var i = 0; i < this.semesters.freshmanF.length; i++){
+        var string = this.semesters.freshmanF[i].Course_Credit + " " + this.semesters.freshmanF[i].Course_Number + "  " + this.semesters.freshmanF[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Freshman Spring", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.freshmanS.length; i++){
+        string = this.semesters.freshmanS[i].Course_Credit + " " + this.semesters.freshmanS[i].Course_Number + "  " + this.semesters.freshmanS[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Sophmore Fall", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.sophmoreF.length; i++){
+        string = this.semesters.sophmoreF[i].Course_Credit + " " + this.semesters.sophmoreF[i].Course_Number + "  " + this.semesters.sophmoreF[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Sophmore Spring", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.sophmoreS.length; i++){
+        string = this.semesters.sophmoreS[i].Course_Credit + " " + this.semesters.sophmoreS[i].Course_Number + "  " + this.semesters.sophmoreS[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Junior Fall", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.juniorF.length; i++){
+        string = this.semesters.juniorF[i].Course_Credit + " " + this.semesters.juniorF[i].Course_Number + "  " + this.semesters.juniorF[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Junior Spring", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.juniorS.length; i++){
+        string = this.semesters.juniorS[i].Course_Credit + " " + this.semesters.juniorS[i].Course_Number + "  " + this.semesters.juniorS[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Senior Fall", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.seniorF.length; i++){
+        string = this.semesters.seniorF[i].Course_Credit + " " + this.semesters.seniorF[i].Course_Number + "  " + this.semesters.seniorF[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.text("Senior Spring", leftCol, pagePtr + 20);
+      pagePtr += 20;
+      for( i = 0; i < this.semesters.seniorS.length; i++){
+        string = this.semesters.seniorS[i].Course_Credit + " " + this.semesters.seniorS[i].Course_Number + "  " + this.semesters.seniorS[i].Course_Name;
+        doc.text(string,leftCol, pagePtr + lineSpacing);
+        pagePtr += lineSpacing;
+      }
+
+      doc.save("plan");
+    }
   },
   created(){
     if(this.$route.params.semester){
