@@ -159,7 +159,10 @@ export default {
             if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
             {
               this.searchProf();
+              this.updateDisplay();
             }
+
+            this.updateDisplay();
 
           })
           .catch(error => {
@@ -167,7 +170,7 @@ export default {
           })
           console.log(this.courses.length);
 
-          this.updateDisplay();
+          
         },
 
         searchProf: function(){
@@ -179,12 +182,11 @@ export default {
             .then(response => {
               console.log(response.data)
               this.courses = response.data;
+              this.updateDisplay();
             })
             .catch(error => {
               console.log("ERROR: " + error.response)
             })
-
-          this.updateDisplay();
         },
 
         sort: function(){
@@ -203,12 +205,11 @@ export default {
             .then(response => {
               console.log(response.data)
               this.courses = response.data;
+              this.updateDisplay();
             })
             .catch(error => {
               console.log("ERROR: " + error.response)
             })
-
-          this.updateDisplay();
         },
 
         planPage(){
@@ -222,12 +223,11 @@ export default {
     .then(response => {
       console.log(response.data)
       this.courses = response.data;
+      this.updateDisplay();
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
     })
-
-    this.updateDisplay();
   }
 };
 </script>
