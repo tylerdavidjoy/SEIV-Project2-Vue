@@ -19,7 +19,7 @@
       <button v-on:click="viewStudents()" style="width:4%; height: 25px; margin:10px;">Students</button>
     </div>
 
-    <div v-for="(data,index) in courses" :key='index'>
+    <div v-for="(data,index) in display" :key='index'>
       <button class="list" v-on:click="view(data.Course_Number)">
         <tbody>
           <tr> 
@@ -67,6 +67,10 @@
         </tbody>
       </button>
     </div>
+
+    <button v-on:click="changePage('previous')" style="width:7%; height: 36px; margin:10px;">Previous</button>
+    <button v-on:click="changePage('next')" style="width:7%; height: 36px; margin:10px;">Next</button>
+
   </div>
 </template>
 
@@ -76,7 +80,10 @@ export default {
   name: "Courses",
   data() {
     return {
-      courses: [],
+        courses: [],
+        display: [],
+        page: 1,
+        numPerPage:10,
         hover: false,
         search: "",
         selected: "",
@@ -84,6 +91,33 @@ export default {
       }
     },
     methods: {
+        updateDisplay: function () {
+          if(this.courses.length == 0){
+            return;
+          }
+
+          var it = 0;
+          for(var i = (this.page * this.numPerPage) - this.numPerPage; i < (this.page * this.numPerPage); i++){
+            this.display[it] = this.courses[i];
+            it++;
+          }
+        },
+
+        changePage: function(direction){
+          if(direction == "next"){
+            if(this.page+1 * this.numPerPage < this.courses.length)
+            this.page++;
+          }
+
+          if(direction == "previous"){
+            if(this.page > 1){
+              this.page--;
+            }
+          }
+
+          this.updateDisplay();
+        },
+
         view: function(courseID){
             if(this.$route.params.semester){
                 this.$router.push({name: 'Plan', params: {id:courseID, semester:this.$route.params.semester}})
@@ -93,83 +127,94 @@ export default {
             }
 
           },
+
         addNew: function(){
           this.$router.push({name: 'New', params: {new:true}})
           },
           viewStudents: function(){
           this.$router.push({name: 'StudentList'})
           },
-          searchItem: function(){
-            var url = "";
-              if(this.search.length < 2)
-              {
-                url = "http://team2.eaglesoftwareteam.com/courses";
-              }
-              if(this.search.length == 4){ //If we need to search for a department
-                url = "http://team2.eaglesoftwareteam.com/courses?filterType=dept&filterBy=" + this.search;
-              }
 
-              else { //Test to see if a course matches
-                url = "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search;
-              }
+        searchItem: function(){
+          var url = "";
+            if(this.search.length < 2)
+            {
+              url = "http://team2.eaglesoftwareteam.com/courses";
+            }
+            if(this.search.length == 4){ //If we need to search for a department
+              url = "http://team2.eaglesoftwareteam.com/courses?filterType=dept&filterBy=" + this.search;
+            }
 
-            axios
+            else { //Test to see if a course matches
+              url = "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search;
+            }
+
+          axios
+          .get(url)
+          .then(response => {
+            console.log(response.data)
+            this.courses = response.data;
+
+            if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
+            {
+              this.searchProf();
+            }
+
+          })
+          .catch(error => {
+            console.log("ERROR: " + error.response)
+          })
+          console.log(this.courses.length);
+
+          this.updateDisplay();
+        },
+
+        searchProf: function(){
+            console.log("Course not found, trying Professor");
+            var url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
+
+          axios
             .get(url)
             .then(response => {
               console.log(response.data)
               this.courses = response.data;
-
-              if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
-              {
-                this.searchProf();
-              }
-
             })
             .catch(error => {
               console.log("ERROR: " + error.response)
             })
-            console.log(this.courses.length);
 
-          },
-          searchProf: function(){
-              console.log("Course not found, trying Professor");
-              var url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
+          this.updateDisplay();
+        },
 
-            axios
-              .get(url)
-              .then(response => {
-                console.log(response.data)
-                this.courses = response.data;
-              })
-              .catch(error => {
-                console.log("ERROR: " + error.response)
-              })
-          },
-          sort: function(){
-              var url = "";
-              if(this.selected == "Course: A-Z")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=forwards";
-              else if(this.selected == "Course: Z-A")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=backwards";
-              else if(this.selected == "Professor: A-Z")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=prof";
-              else if(this.selected == "Course: Asc#")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=number";
+        sort: function(){
+            var url = "";
+            if(this.selected == "Course: A-Z")
+              url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=forwards";
+            else if(this.selected == "Course: Z-A")
+              url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=backwards";
+            else if(this.selected == "Professor: A-Z")
+              url = "http://team2.eaglesoftwareteam.com/courses?sort=prof";
+            else if(this.selected == "Course: Asc#")
+              url = "http://team2.eaglesoftwareteam.com/courses?sort=number";
 
-            axios
-              .get(url)
-              .then(response => {
-                console.log(response.data)
-                this.courses = response.data;
-              })
-              .catch(error => {
-                console.log("ERROR: " + error.response)
-              })
-          },
-          planPage(){
-            this.$router.push({name: 'Plan'})
-          }
+          axios
+            .get(url)
+            .then(response => {
+              console.log(response.data)
+              this.courses = response.data;
+            })
+            .catch(error => {
+              console.log("ERROR: " + error.response)
+            })
+
+          this.updateDisplay();
+        },
+
+        planPage(){
+          this.$router.push({name: 'Plan'})
+        }
       },
+
     created() {
     axios
     .get("http://team2.eaglesoftwareteam.com/courses")
@@ -180,6 +225,8 @@ export default {
     .catch(error => {
       console.log("ERROR: " + error.response)
     })
+
+    this.updateDisplay();
   }
 };
 </script>
