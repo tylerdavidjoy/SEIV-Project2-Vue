@@ -39,33 +39,12 @@
 </template>
 
 <script>
-//import axios from 'axios'
+import axios from 'axios'
 export default {
   name: "Students",
   data() {
     return {
-      students: [
-        {
-          Student_Name:"John",
-          Student_ID:1590393,
-          Student_Advisor:"Dr. Doe",
-          Student_Hours_Taken:98,
-          Student_GPA:3.5,
-          Student_Classification:"Senior",
-          Student_Hours_To_Graduate:32,
-          Student_Major:"Computer Science",
-        },
-        {
-          Student_Name:"Lacey",
-          Student_ID:1420693,
-          Student_Advisor:"Dr. Doe",
-          Student_Hours_Taken:32,
-          Student_GPA:4.0,
-          Student_Classification:"Sophomore",
-          Student_Hours_To_Graduate:98,
-          Student_Major:"Accounting",
-        }
-      ],
+      students: [],
         hover: false,
         search: "",
         selected: ""
@@ -75,81 +54,11 @@ export default {
     methods: {
         view: function(data){
             this.$router.push({name: 'Profile', params: {name:data.Student_Name, student:data}})
-          },/*
-        addNew: function(){
-          this.$router.push({name: 'New', params: {new:true}})
           },
-          searchItem: function(){
-            var url = "";
-              if(this.search.length < 2)
-              {
-                url = "http://team2.eaglesoftwareteam.com/courses";
-              }
-              if(this.search.length == 4){ //If we need to search for a department
-                url = "http://team2.eaglesoftwareteam.com/courses?filterType=dept&filterBy=" + this.search;
-              }
-
-              else { //Test to see if a course matches
-                url = "http://team2.eaglesoftwareteam.com/courses?filterType=name&filterBy=" + this.search;
-              }
-
-            axios
-            .get(url)
-            .then(response => {
-              console.log(response.data)
-              this.courses = response.data;
-
-              if(this.courses.length == 0) //If we attempted to search for a course and found nothing, search for a professor
-              {
-                this.searchProf();
-              }
-
-            })
-            .catch(error => {
-              console.log("ERROR: " + error.response)
-            })
-            console.log(this.courses.length);
-
-          },
-          searchProf: function(){
-              console.log("Course not found, trying Professor");
-              var url = "http://team2.eaglesoftwareteam.com/courses?filterType=prof&filterBy=" + this.search;
-
-            axios
-              .get(url)
-              .then(response => {
-                console.log(response.data)
-                this.courses = response.data;
-              })
-              .catch(error => {
-                console.log("ERROR: " + error.response)
-              })
-          },
-          sort: function(){
-              var url = "";
-              if(this.selected == "Course: A-Z")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=forwards";
-              else if(this.selected == "Course: Z-A")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=course&order=backwards";
-              else if(this.selected == "Professor: A-Z")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=prof";
-              else if(this.selected == "Course: Asc#")
-                url = "http://team2.eaglesoftwareteam.com/courses?sort=number";
-
-            axios
-              .get(url)
-              .then(response => {
-                console.log(response.data)
-                this.courses = response.data;
-              })
-              .catch(error => {
-                console.log("ERROR: " + error.response)
-              })
-          }
-      },
+        
     created() {
     axios
-    .get("http://team2.eaglesoftwareteam.com/courses")
+    .get("http://team2.eaglesoftwareteam.com/student")
     .then(response => {
       console.log(response.data)
       this.courses = response.data;
@@ -157,8 +66,9 @@ export default {
     .catch(error => {
       console.log("ERROR: " + error.response)
     })
-  */}
+  }
 
+}
 };
 </script>
 
