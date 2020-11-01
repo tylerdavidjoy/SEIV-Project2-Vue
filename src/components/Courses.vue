@@ -102,6 +102,7 @@ export default {
           for(var i = (this.page -1 * this.numPerPage); i < (this.page * this.numPerPage); i++){
             this.display.push(this.courses[i]);
           }
+          console.log(this.display);
         },
 
         changePage: function(direction){
