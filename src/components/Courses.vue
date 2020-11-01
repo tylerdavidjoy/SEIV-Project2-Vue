@@ -92,6 +92,7 @@ export default {
     },
     methods: {
         updateDisplay: function () {
+          console.log("Update");
           if(this.courses.length == 0){
             return;
           }
