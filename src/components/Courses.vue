@@ -92,15 +92,15 @@ export default {
     },
     methods: {
         updateDisplay: function () {
+          this.display = [];
           console.log("Update");
           if(this.courses.length == 0){
+            console.log("No courses");
             return;
           }
 
-          var it = 0;
-          for(var i = (this.page * this.numPerPage) - this.numPerPage; i < (this.page * this.numPerPage); i++){
-            this.display[it] = this.courses[i];
-            it++;
+          for(var i = (this.page -1 * this.numPerPage); i < (this.page * this.numPerPage); i++){
+            this.display.push(this.courses[i]);
           }
         },
 
