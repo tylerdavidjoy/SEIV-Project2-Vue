@@ -61,7 +61,7 @@ export default {
     .get("http://team2.eaglesoftwareteam.com/student")
     .then(response => {
       console.log(response.data)
-      this.courses = response.data;
+      this.students = response.data;
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
