@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         view: function(data){
-            this.$router.push({name: 'Profile', params: {name:data.Student_Name, student:data}})
+            this.$router.push({name: 'Profile', params: {name:data.stu_name, student:data}})
           },
     },
     created() {
