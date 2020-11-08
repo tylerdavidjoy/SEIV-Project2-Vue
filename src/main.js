@@ -39,18 +39,14 @@ function getUser(email) {
   axios
   .get("http://team2.eaglesoftwareteam.com/user?email=" + email)
   .then(response => {
-    console.log(response.data)
-
-    if(response.data.length < 1){
-      createUser(email);
-    }
-    
+    console.log(response.data)    
     var userID = response.data.user_id;
     var role = response.data.user_role;
     getRoleID(userID,role);
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
+    createUser(email);
   })
 };
 
