@@ -47,6 +47,7 @@ function getUser(email) {
     console.log(response.data)    
     var userID = response.data.user_id;
     var role = response.data.user_role;
+    console.log(role);
     getRoleID(userID,role);
   })
   .catch(error => {
@@ -62,7 +63,7 @@ function createUser(email){
     .then(response => {
       console.log(response.data)
       var userID = response.data.user_id;
-      var role = response.data.user_role;
+      var role = "student";
       getRoleID(userID,role);
   })
   .catch(error => {
@@ -87,6 +88,7 @@ function getRoleID(userID,role){
       if(role == "student")
       {
         roleID = response.data.stu_id;
+        console.log("RoleID:" + roleID);
         getPlan(userID,role,roleID);
       }
       
