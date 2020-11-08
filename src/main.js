@@ -37,7 +37,7 @@ window.onSignIn = function (googleUser) {
 
 function getUser(email) {
   axios
-  .get("http://team2.eaglesoftwareteam.com/user?user_email=" + email)
+  .get("http://team2.eaglesoftwareteam.com/user?email=" + email)
   .then(response => {
     console.log(response.data)
 
