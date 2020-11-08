@@ -263,7 +263,7 @@ export default {
   data() {
     return {
       semesters: {
-        freshmanF: [],
+        freshmanF: [{Course_Number: "ACCT-0010", Course_Name:"Accounting Lower Division", Course_Credit: "69"}],
         freshmanS: [],
         sophmoreF: [],
         sophmoreS: [],
