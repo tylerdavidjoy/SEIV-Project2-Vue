@@ -33,18 +33,7 @@ export default {
         this.$router.push("/list");
       },
       userPage(){
-        var student =
-        {
-          Student_Name:"John",
-          Student_ID:1590393,
-          Student_Advisor:"Dr. Doe",
-          Student_Hours_Taken:98,
-          Student_GPA:3.5,
-          Student_Classification:"Senior",
-          Student_Hours_To_Graduate:32,
-          Student_Major:"Computer Science",
-        }
-        this.$router.push({name: 'Profile', params: {name:student.Student_Name, student:student}})
+        this.$router.push({name: 'Profile', params: {student_id:window.user.role_id}})
       }
     }
 }
