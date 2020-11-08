@@ -132,9 +132,9 @@ import axios from 'axios'
     },
 
     navigate(){
-      this.$router.push("/list");
+      //this.$router.push("/list");
     }
-    
+
     }
   };
 </script>
