@@ -50,15 +50,7 @@ import axios from 'axios'
     },
     methods: {
       login: function() {
-        if(this.getUser()) //If I can get the user information
-        {
-          if(this.user.role == "student"){
-            if(!this.getPlan()){
-              return; //Exit if fails, do not redirect
-            }
-          }
-          window.user = this.user; //Update the global user info
-          this.$router.push("/list");
+          this.getUser();
         }
       },
       getUser() {
@@ -68,11 +60,10 @@ import axios from 'axios'
           console.log(response.data)
           this.user.roleID = response.data.user_id;
           this.user.role = response.data.user_role;
-          return true;
+          this.getRoleID();
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
-        return false;
       })
     },
     getRoleID(){
@@ -81,14 +72,20 @@ import axios from 'axios'
         url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + this.user.id;
       }
       else{
-        //url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + this.user.id;
+        url = "http://team2.eaglesoftwareteam.com/advisor_user?user_id=" + this.user.id;
       }
         axios
         .get(url)
         .then(response => {
           console.log(response.data)
-          this.user.roleID = response.data.stu_id;
-          return true;
+          if(this.user.role == "student")
+          {
+            this.user.roleID = response.data.stu_id;
+            this.getPlan();
+          }
+          
+          else
+            this.user.roleID = response.data.advisor_id;
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
@@ -101,15 +98,18 @@ import axios from 'axios'
         .then(response => {
           console.log(response.data)
           this.user.planID = response.data.plan_id;
-          return true;
+          window.user = this.user;
+          navigate();
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
         return false;
       })
+    },
+    navigate(){
+      this.$router.push("/list");
     }
     
-    }
   };
 </script>
 
