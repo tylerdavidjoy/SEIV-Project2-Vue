@@ -22,15 +22,23 @@
       <button class="list" v-on:click="view(data)">
         <tbody>
           <tr> 
-            <td class="list-content-small">Name: {{data.Student_Name}}</td>
+            <td class="list-content-small">Name: {{data.stu_name}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">ID Number: {{data.Student_ID}}</td>
+            <td class="list-content-small">ID Number: {{data.stu_id}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Classification: {{data.Student_Classification}}</td>
+            <td class="list-content-small">Classification: {{data.stu_classification}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Major: {{data.Student_Major}}</td>
+            <td class="list-content-small">Major: {{data.major_id}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">GPA: {{data.Student_GPA}}</td>
+            <td class="list-content-small">GPA: {{data.stu_gpa}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">Graduation Date: {{data.stu_grad_date}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">Advisor: {{data.adv_id}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">Hours fulfilled: {{data.stu_hrs_taken}}</td>
+            <td style="color:#C0C0C0">______</td>
+            <td class="list-content-small">Hours left: {{data.stu_hrs_not_taken}}</td>
           </tr>
         </tbody>
       </button>
@@ -49,13 +57,12 @@ export default {
         search: "",
         selected: ""
       }
-      
     },
     methods: {
         view: function(data){
             this.$router.push({name: 'Profile', params: {name:data.Student_Name, student:data}})
           },
-        
+    },
     created() {
     axios
     .get("http://team2.eaglesoftwareteam.com/student")
@@ -67,8 +74,6 @@ export default {
       console.log("ERROR: " + error.response)
     })
   }
-
-}
 };
 </script>
 
