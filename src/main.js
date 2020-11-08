@@ -20,7 +20,7 @@ window.onSignIn = function (googleUser) {
 
 //      userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
   
-//var userdata = getUser(profile.getEmail()); //Ask backend for user data UNCOMMENT WHEN BACKEND IS FIXED
+/*var userdata = getUser(profile.getEmail()); //Ask backend for user data UNCOMMENT WHEN BACKEND IS FIXED
 
   window.user = {
     id: profile.getId(),
@@ -31,10 +31,19 @@ window.onSignIn = function (googleUser) {
     role_type: userdata.role_type,
     role_id: userdata.role_id,
     plan_id: userdata.plan_id
+  }; */
+
+  window.user = {
+    id: profile.getId(),
+    name: profile.getName(),
+    imgUrl: profile.getImageUrl(),
+    email: profile.getEmail(),
   };
 
   console.log(window.user);
 };
+
+getUser.use;
 
 function getUser(email) {
   axios
