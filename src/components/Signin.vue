@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
@@ -49,10 +50,10 @@
     },
     methods: {
       login: function() {
-        if(getUser()) //If I can get the user information
+        if(this.getUser()) //If I can get the user information
         {
-          if(this.user.role = "student"){
-            if(!getPlan()){
+          if(this.user.role == "student"){
+            if(!this.getPlan()){
               return; //Exit if fails, do not redirect
             }
           }
