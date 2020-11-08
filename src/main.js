@@ -48,11 +48,11 @@ function getUser(email) {
     var userID = response.data.user_id;
     var role = response.data.user_role;
     console.log(role);
-    getRoleID(userID,role);
+    return getRoleID(userID,role);
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
-    createUser(email);
+    return createUser(email);
   })
 };
 
@@ -64,7 +64,7 @@ function createUser(email){
       console.log(response.data)
       var userID = response.data.user_id;
       var role = "student";
-      getRoleID(userID,role);
+      return getRoleID(userID,role);
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
@@ -88,7 +88,7 @@ function getRoleID(userID,role){
       if(role == "student")
       {
         roleID = response.data[0].stu_id;
-        getPlan(userID,role,roleID);
+        return getPlan(userID,role,roleID);
       }
       
       else {
