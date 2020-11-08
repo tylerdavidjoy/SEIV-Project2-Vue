@@ -20,27 +20,13 @@ window.onSignIn = function (googleUser) {
 
 //      userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
   
-var userdata = getUser(profile.getEmail()); //Ask backend for user data UNCOMMENT WHEN BACKEND IS FIXED
-
-  window.user = {
-    id: profile.getId(),
-    name: profile.getName(),
-    imgUrl: profile.getImageUrl(),
-    email: profile.getEmail(),
-    userID: userdata.user_id,
-    role_type: userdata.role_type,
-    role_id: userdata.role_id,
-    plan_id: userdata.plan_id
-  }; 
-
-
-
+  getUser(profile,profile.getEmail()); //Ask backend for user data UNCOMMENT WHEN BACKEND IS FIXED
   console.log(window.user);
 };
 
 getUser.use;
 
-function getUser(email) {
+function getUser(profile,email) {
   axios
   .get("http://team2.eaglesoftwareteam.com/user?email=" + email)
   .then(response => {
@@ -48,15 +34,15 @@ function getUser(email) {
     var userID = response.data.user_id;
     var role = response.data.user_role;
     console.log(role);
-    return getRoleID(userID,role);
+    getRoleID(profile,userID,role);
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
-    return createUser(email);
+    createUser(email);
   })
 };
 
-function createUser(email){
+function createUser(profile,email){
   var payload = {user_role:"student", user_email:email};
   axios
     .post("http://team2.eaglesoftwareteam.com/user", payload)
@@ -64,14 +50,14 @@ function createUser(email){
       console.log(response.data)
       var userID = response.data.user_id;
       var role = "student";
-      return getRoleID(userID,role);
+      getRoleID(profile,userID,role);
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
   })
 };
 
-function getRoleID(userID,role){
+function getRoleID(profile,userID,role){
   var url = "";
   var roleID ="";
 
@@ -88,13 +74,12 @@ function getRoleID(userID,role){
       if(role == "student")
       {
         roleID = response.data[0].stu_id;
-        return getPlan(userID,role,roleID);
+        getPlan(profile,userID,role,roleID);
       }
       
       else {
         roleID = response.data.advisor_id;
-        var userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:""};
-        return userData;
+        setGlobalUser(profile,userID,role,roleID,"");
       }
   })
   .catch(error => {
@@ -102,18 +87,32 @@ function getRoleID(userID,role){
   })
 };
 
-function getPlan(userID,role,roleID)
+function getPlan(profile,userID,role,roleID)
 {
   var planID = "";
+  planID.use;
   axios
     .get("http://team2.eaglesoftwareteam.com/plan?stuid=" + roleID)
     .then(response => {
       console.log(response.data)
       planID = response.data.plan_id;
-      var userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
-      return userData;
+      setGlobalUser(profile,userID,role,roleID,planID);
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
   })
 };
+
+
+function setGlobalUser(profile,userID,role,roleID,planid){
+  window.user = {
+    id: profile.getId(),
+    name: profile.getName(),
+    imgUrl: profile.getImageUrl(),
+    email: profile.getEmail(),
+    userID: userID,
+    role_type: role,
+    role_id: roleID,
+    plan_id: planid
+  }; 
+}
