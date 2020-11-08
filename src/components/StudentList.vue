@@ -66,7 +66,7 @@ export default {
         
     created() {
     axios
-    .get("http://team2.eaglesoftwareteam.com/student")
+    .get("http://team2.eaglesoftwareteam.com/courses")
     .then(response => {
       console.log(response)
       this.students = response.data;
