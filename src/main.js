@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
 
 Vue.config.productionTip = false;
 var viewModel = new Vue({
@@ -90,7 +91,7 @@ function getRoleID(userID,role){
       
       else {
         roleID = response.data.advisor_id;
-        userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:""};
+        var userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:""};
         return userData;
       }
   })
@@ -107,7 +108,8 @@ function getPlan(userID,role,roleID)
     .then(response => {
       console.log(response.data)
       planID = response.data.plan_id;
-      userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
+      var userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
+      return userData;
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
