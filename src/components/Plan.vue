@@ -495,6 +495,8 @@ export default {
     }
   },
   created(){
+    console.log(this.user);
+
     if(this.$route.params.semester){
       this.getCourse();      
     }
