@@ -72,7 +72,7 @@ import axios from 'axios'
         url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + this.user.id;
       }
       else{
-        url = "http://team2.eaglesoftwareteam.com/advisor_user?user_id=" + this.user.id;
+        url = "http://team2.eaglesoftwareteam.com/advisor_user?userid=" + this.user.id;
       }
         axios
         .get(url)
@@ -84,7 +84,7 @@ import axios from 'axios'
             this.getPlan();
           }
           
-          else{
+          else {
             this.user.roleID = response.data.advisor_id;
             this.navigate();
           }
@@ -110,7 +110,7 @@ import axios from 'axios'
       })
     },
     navigate(){
-      this.$router.push("/list");
+      //this.$router.push("/list");
     }
     
   };
