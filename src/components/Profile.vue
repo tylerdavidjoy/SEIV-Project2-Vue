@@ -9,56 +9,63 @@
          <tr>
            <td><label>Name:</label></td>
            <td>        
-             <input type="text" v-model="$route.params.student.Student_Name" placeholder="Name"/>
+             <input type="text" v-model="$route.params.student.stu_name" placeholder="Name"/>
             </td>
         </tr>
 
         <tr>
            <td><label>ID Number:</label></td>
             <td>         
-              <input type="text" v-model="$route.params.student.Student_ID" placeholder="ID Number"/>
+              <input type="text" v-model="$route.params.student.stu_id" placeholder="ID Number"/>
             </td>
         </tr>
 
         <tr>
           <td><label>Advisor:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.Student_Advisor" placeholder="Advisor" />
-          </td>
-        </tr>
-
-        <tr>
-          <td><label>Hours Taken:</label></td>
-          <td>        
-            <input type="text" v-model="$route.params.student.Student_Hours_Taken" placeholder="Hours Taken" />
+            <input type="text" v-model="$route.params.student.adv_id" placeholder="Advisor" />
           </td>
         </tr>
 
         <tr>
           <td><label>GPA:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.Student_GPA" placeholder="GPA" />
+            <input type="text" v-model="$route.params.student.stu_gpa" placeholder="GPA" />
           </td>
         </tr>
 
         <tr>
           <td><label>Classification:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.Student_Classification" placeholder="Classification" />
+            <input type="text" v-model="$route.params.student.stu_classification" placeholder="Classification" />
           </td>
         </tr>
 
         <tr>
-          <td><label>Hours to Graduate:</label></td>
+          <td><label>Graduation Date:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.Student_Hours_To_Graduate" placeholder="Hours to Graduate" />
+            <input type="text" v-model="$route.params.student.stu_grad_date" placeholder="Graduation Date" />
           </td>
         </tr>
 
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.Student_Major" placeholder="Major" />
+            <input type="text" v-model="$route.params.student.major_id" placeholder="Major" />
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>Hours Taken:</label></td>
+          <td>        
+            <input type="text" v-model="$route.params.student.stu_hrs_taken" placeholder="Hours Taken" />
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>Hours Left:</label></td>
+          <td>        
+            <input type="text" v-model="$route.params.student.stu_hrs_not_taken" placeholder="Hours Taken" />
           </td>
         </tr>
 
@@ -73,7 +80,6 @@
 </template>
 
 <script>
-//import axios from "axios";
 
 export default {
   data() {
@@ -94,98 +100,6 @@ export default {
       planPage(){
             this.$router.push({name: 'Plan'})
           },
-      /*
-    cSave: function(addNew) {
-      // Save the course
-      if (addNew) {
-        axios
-          .post(
-            "http://team2.eaglesoftwareteam.com/courses",
-            {
-              Course_Number: this.course.Course_Number,
-              Course_Name: this.course.Course_Name,
-              Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
-              Course_Semester: this.course.Course_Semester,
-              Course_Credit: Number(this.course.Course_Credit),
-              Course_Start_Time: this.course.Course_Start_Time,
-              Course_End_Time: this.course.Course_End_Time,
-              Course_Room: this.course.Course_Room,
-              Course_Description: this.course.Course_Description,
-              Course_Department: this.course.Course_Department,
-              Course_Level: Number(this.course.Course_Level),
-            }
-          )
-          .then(() => {
-            this.backToList();
-          })
-          .catch((error) => {
-            console.log("ERROR: " + error.response);
-            // Display error and don't change page
-          });
-      } else {
-        axios
-          .put(
-            "http://team2.eaglesoftwareteam.com/courses/" +
-              this.$route.params.id,
-            {
-              Course_Number: this.course.Course_Number,
-              Course_Name: this.course.Course_Name,
-              Course_Professor_Full_Name: this.course.Course_Professor_Full_Name,
-              Course_Semester: this.course.Course_Semester,
-              Course_Credit: Number(this.course.Course_Credit),
-              Course_Start_Time: this.course.Course_Start_Time,
-              Course_End_Time: this.course.Course_End_Time,
-              Course_Room: this.course.Course_Room,
-              Course_Description: this.course.Course_Description,
-              Course_Department: this.course.Course_Department,
-              Course_Level: Number(this.course.Course_Level),
-            }
-          )
-          .then(() => {
-            this.backToList();
-          })
-          .catch((error) => {
-            console.log("ERROR: " + error.response);
-            // Display  on page and ddon't change page
-          });
-      }
-      // Go back to select page
-      this.backToList();
-    },
-    cDelete: function(addNew) {
-      // Delete the course
-      if (!addNew) {
-        axios
-          .delete(
-            "http://team2.eaglesoftwareteam.com/courses/" +
-              this.$route.params.id
-          )
-          .then(() => {
-            this.backToList();
-          })
-          .catch((error) => {
-            console.log("ERROR: " + error.response);
-          });
-      }
-    },
-    backToList: function() {
-      this.$router.push("/list");
-    },
-  },
-  created() {
-    if (!this.$route.params.new) {
-      axios
-        .get(
-          "http://team2.eaglesoftwareteam.com/courses/id=" + this.$route.params.id
-        )
-        .then((response) => {
-          console.log(response.data);
-          this.course = response.data;
-        })
-        .catch((error) => {
-          console.log("ERROR: " + error.response);
-        });
-    }*/
   },
 }; 
 </script>
