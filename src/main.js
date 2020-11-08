@@ -70,7 +70,7 @@ function getRoleID(userID,role){
   var roleID ="";
 
   if(role == "student"){
-    url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + userID;
+    url = "http://team2.eaglesoftwareteam.com/student_user?userid=" + userID;
   }
   else{
     url = "http://team2.eaglesoftwareteam.com/advisor_user?userid=" + userID;
@@ -100,7 +100,7 @@ function getPlan(userID,role,roleID)
 {
   var planID = "";
   axios
-    .get("http://team2.eaglesoftwareteam.com/plan?stu_id=" + roleID)
+    .get("http://team2.eaglesoftwareteam.com/plan?stuid=" + roleID)
     .then(response => {
       console.log(response.data)
       planID = response.data.plan_id;
