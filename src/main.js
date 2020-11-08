@@ -19,7 +19,8 @@ window.onSignIn = function (googleUser) {
   console.log('Email: ' + profile.getEmail());
 
 //      userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
-  var userdata = getUser(profile.getEmail()); //Ask backend for user data
+  
+//var userdata = getUser(profile.getEmail()); //Ask backend for user data UNCOMMENT WHEN BACKEND IS FIXED
 
   window.user = {
     id: profile.getId(),
