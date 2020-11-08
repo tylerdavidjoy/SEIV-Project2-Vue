@@ -40,14 +40,74 @@
           id:"",
           name: "",
           imgURL: "",
-          email: ""
+          email: "",
+          role: "",
+          roleID:"",
+          planID:""
         }
       }
     },
     methods: {
       login: function() {
-        this.$router.push("/list");
+        if(getUser()) //If I can get the user information
+        {
+          if(this.user.role = "student"){
+            if(!getPlan()){
+              return; //Exit if fails, do not redirect
+            }
+          }
+          window.user = this.user; //Update the global user info
+          this.$router.push("/list");
+        }
+      },
+      getUser() {
+        axios
+        .get("http://team2.eaglesoftwareteam.com/user?user_email=" + this.user.email)
+        .then(response => {
+          console.log(response.data)
+          this.user.roleID = response.data.user_id;
+          this.user.role = response.data.user_role;
+          return true;
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+        return false;
+      })
+    },
+    getRoleID(){
+      var url = "";
+      if(this.user.role == "student"){
+        url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + this.user.id;
       }
+      else{
+        //url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + this.user.id;
+      }
+        axios
+        .get(url)
+        .then(response => {
+          console.log(response.data)
+          this.user.roleID = response.data.stu_id;
+          return true;
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+        return false;
+      })
+    },
+    getPlan(){
+      axios
+        .get("http://team2.eaglesoftwareteam.com/plan?stu_id=" + this.user.roleID)
+        .then(response => {
+          console.log(response.data)
+          this.user.planID = response.data.plan_id;
+          return true;
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+        return false;
+      })
+    }
+    
     }
   };
 </script>
