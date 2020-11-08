@@ -87,8 +87,7 @@ function getRoleID(userID,role){
       console.log(response.data)
       if(role == "student")
       {
-        roleID = response.data.stu_id;
-        console.log("RoleID:" + roleID);
+        roleID = response.data[0].stu_id;
         getPlan(userID,role,roleID);
       }
       
