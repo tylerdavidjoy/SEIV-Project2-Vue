@@ -53,9 +53,30 @@ import axios from 'axios'
           this.getUser();
         }
       },
+
       getUser() {
         axios
         .get("http://team2.eaglesoftwareteam.com/user?user_email=" + this.user.email)
+        .then(response => {
+          console.log(response.data)
+
+          if(response.data.length < 1){
+            this.createUser();
+          }
+
+          this.user.roleID = response.data.user_id;
+          this.user.role = response.data.user_role;
+          this.getRoleID();
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      })
+    },
+
+    createUser(){
+      var payload = {user_role:"student", user_email:this.user.email};
+      axios
+        .post("http://team2.eaglesoftwareteam.com/user", payload)
         .then(response => {
           console.log(response.data)
           this.user.roleID = response.data.user_id;
@@ -66,6 +87,7 @@ import axios from 'axios'
         console.log("ERROR: " + error.response)
       })
     },
+
     getRoleID(){
       var url = "";
       if(this.user.role == "student"){
@@ -88,13 +110,13 @@ import axios from 'axios'
             this.user.roleID = response.data.advisor_id;
             this.navigate();
           }
-
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
         return false;
       })
     },
+
     getPlan(){
       axios
         .get("http://team2.eaglesoftwareteam.com/plan?stu_id=" + this.user.roleID)
@@ -109,10 +131,10 @@ import axios from 'axios'
         return false;
       })
     },
+
     navigate(){
-      //this.$router.push("/list");
+      this.$router.push("/list");
     }
-    
   };
 </script>
 
