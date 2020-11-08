@@ -84,8 +84,11 @@ import axios from 'axios'
             this.getPlan();
           }
           
-          else
+          else{
             this.user.roleID = response.data.advisor_id;
+            this.navigate();
+          }
+
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
@@ -99,7 +102,7 @@ import axios from 'axios'
           console.log(response.data)
           this.user.planID = response.data.plan_id;
           window.user = this.user;
-          navigate();
+          this.navigate();
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
