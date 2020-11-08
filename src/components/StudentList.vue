@@ -68,7 +68,7 @@ export default {
     axios
     .get("http://team2.eaglesoftwareteam.com/student")
     .then(response => {
-      console.log(response.data)
+      console.log(response)
       this.students = response.data;
     })
     .catch(error => {
