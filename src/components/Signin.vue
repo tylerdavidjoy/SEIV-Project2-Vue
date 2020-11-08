@@ -51,7 +51,6 @@ import axios from 'axios'
     methods: {
       login: function() {
           this.getUser();
-        }
       },
 
       getUser() {
@@ -134,6 +133,8 @@ import axios from 'axios'
 
     navigate(){
       this.$router.push("/list");
+    }
+    
     }
   };
 </script>
