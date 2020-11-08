@@ -409,7 +409,7 @@ export default {
   
      getSemesters(){
         axios
-        .get("http://team2.eaglesoftwareteam.com/semester?id=" + this.user.plan_id)
+        .get("http://team2.eaglesoftwareteam.com/semester?plan=" + this.user.plan_id)
         .then(response => {
           console.log(response.data)
           this.semestersDB = response.data;
