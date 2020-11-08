@@ -28,6 +28,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,0,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -54,6 +55,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,1,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -85,6 +87,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,2,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -112,6 +115,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,3,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -143,6 +147,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,4,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -170,6 +175,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,5,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -200,6 +206,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,6,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -227,6 +234,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
+                <td><button v-on:click="removeCourse(index,7,data.Course_Id)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -255,8 +263,8 @@ export default {
   data() {
     return {
       semesters: {
-        freshmanF: [{Course_Number: "ACCT-0010", Course_Name:"Accounting Lower Division", Course_Credit: "0"}],
-        freshmanS: [{Course_Number: "ACCT-0010", Course_Name:"Accounting Lower Division", Course_Credit: "0"}],
+        freshmanF: [],
+        freshmanS: [],
         sophmoreF: [],
         sophmoreS: [],
         juniorF: [],
@@ -272,7 +280,8 @@ export default {
       juS: " Junior Spring ",
       seF: "  Senior Fall  ",
       seS: " Senior Spring ",
-      empty: true
+      empty: true,
+      user: window.user
     };
   },
   methods:{
@@ -297,38 +306,119 @@ export default {
         return course;
      },
      addCourse(temp){
-      var course = {Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit, Course_Grade: ''}
+      var course = {Course_id: temp.Course_Id, Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit, Course_Grade: ''}
       switch(this.$route.params.semester){
               case "freshmanF":
                 this.semesters.freshmanF.push(course);
                 this.empty = false;
+                this.addCourseDB(0);
                 break;
               case "freshmanS":
                 this.semesters.freshmanS.push(course);
+                this.addCourseDB(1);
                 break;
               case "sophmoreF":
                 this.semesters.sophmoreF.push(course);
                 this.empty = false;
+                this.addCourseDB(2);
                 break;
               case "sophmoreS":
                 this.semesters.sophmoreS.push(course);
+                this.addCourseDB(3);
                 break;
               case "juniorF":
                 this.semesters.juniorF.push(course);
                 this.empty = false;
+                this.addCourseDB(4);
                 break;
               case "juniorS":
                 this.semesters.juniorS.push(course);
+                this.addCourseDB(5);
                 break;
               case "seniorF":
                 this.semesters.seniorF.push(course);
                 this.empty = false;
+                this.addCourseDB(6);
                 break;
               case "seniorS":
                 this.semesters.seniorS.push(course);
+                this.addCourseDB(7);
                 break;
             }
      },
+
+     removeCourse(index,semsterRemove, course){
+       switch(semsterRemove){
+              case "freshmanF":
+                this.semesters.freshmanF.splice(index);
+                this.removeCourseDB(0, course);
+                break;
+              case "freshmanS":
+                this.semesters.freshmanS.splice(index);
+                this.removeCourseDB(1, course);
+                break;
+              case "sophmoreF":
+                this.semesters.sophmoreF.splice(index);
+                this.removeCourseDB(2, course);
+                break;
+              case "sophmoreS":
+                this.semesters.sophmoreS.splice(index);
+                this.removeCourseDB(3, course);
+                break;
+              case "juniorF":
+                this.semesters.juniorF.splice(index);
+                this.removeCourseDB(4, course);
+                break;
+              case "juniorS":
+                this.semesters.juniorS.splice(index);
+                this.removeCourseDB(5, course);
+                break;
+              case "seniorF":
+                this.semesters.seniorF.splice(index);
+                this.removeCourseDB(6, course);
+                break;
+              case "seniorS":
+                this.semesters.seniorS.splice(index);
+                this.removeCourseDB(7, course);
+                break;
+            }
+     },
+
+     addCourseDB(semesterIndex, course){
+       var payload = {semester_id: this.semestersDB[semesterIndex].semester_id, course_id: course.Course_Number, grade: course.Course_Grade}
+        axios
+        .post("http://team2.eaglesoftwareteam.com/semester_courses", payload)
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log("ERROR: " + error.response)
+        })  
+      },
+
+      removeCourseDB(semesterIndex,course){
+        axios
+        .delete("http://team2.eaglesoftwareteam.com/semester_courses/?semester=" + this.semestersDB[semesterIndex].semester_id + "&course=" + course.Course_Id)
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log("ERROR: " + error.response)
+        })  
+      },
+  
+     getSemesters(){
+        axios
+        .get("http://team2.eaglesoftwareteam.com/semester?id=" + this.user.planID)
+        .then(response => {
+          console.log(response.data)
+          this.semestersDB = response.data;
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      })  
+     },
+
     createPDF(){
       var leftCol = 30;
       var lineSpacing = 8;
@@ -412,6 +502,8 @@ export default {
       if(this.semesters.freshmanF.length > 0 || this.semesters.sophmoreF.length > 0 || this.semesters.juniorF.length > 0 || this.semesters.seniorF.length > 0){
         this.empty = false;
       }
+
+    this.getSemesters();
   }
 
 
