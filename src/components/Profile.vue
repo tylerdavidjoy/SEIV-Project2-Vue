@@ -104,10 +104,10 @@ export default {
       console.log("ERROR: " + error.response)
     }),
     axios
-    .get(`http://team2.eaglesoftwareteam.com/major?=major_id${this.student.major_id}`)
+    .get(`http://team2.eaglesoftwareteam.com/major?id=${this.student.major_id}`)
     .then(response => {
       console.log(response.data)
-      this.major = response.data[0];
+      this.major = response.data;
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
