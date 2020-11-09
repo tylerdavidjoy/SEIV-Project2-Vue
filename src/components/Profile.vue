@@ -51,7 +51,7 @@
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="major.major_name" placeholder="Major" />
+            <input type="text" v-model="major[0].major_name" placeholder="Major" />
           </td>
         </tr>
 
