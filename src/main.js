@@ -13,10 +13,6 @@ viewModel.use;
 
 window.onSignIn = function (googleUser) {
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
 
 //      userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
   
@@ -104,7 +100,7 @@ function getPlan(profile,userID,role,roleID)
 };
 
 
-function setGlobalUser(profile,userID,role,roleID,planid){
+function setGlobalUser(profile,userID,role,roleID,planID){
   window.user = {
     id: profile.getId(),
     name: profile.getName(),
@@ -113,6 +109,9 @@ function setGlobalUser(profile,userID,role,roleID,planid){
     userID: userID,
     role_type: role,
     role_id: roleID,
-    plan_id: planid
+    plan_id: planID
   }; 
+
+
+  console.log(window.user);
 }
