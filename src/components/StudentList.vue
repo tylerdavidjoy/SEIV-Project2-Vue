@@ -68,7 +68,7 @@ export default {
 
       for(let i = 0; i < this.students.length; i++)
       {
-        this.majors.push(this.getMajorName(this.students[i].major_id));
+        this.getMajorName(this.students[i].major_id);
       }
 
     })
