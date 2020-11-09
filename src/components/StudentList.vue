@@ -52,7 +52,7 @@ export default {
             .get(`http://team2.eaglesoftwareteam.com/major?major_id=${id}`)
             .then(response => {
               console.log(response.data)
-               major.push(response.data[0].major_name);
+               majors.push(response.data[0].major_name);
             })
             .catch(error => {
               console.log("ERROR: " + error.response)
