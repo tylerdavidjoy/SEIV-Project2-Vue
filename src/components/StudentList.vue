@@ -2,27 +2,27 @@
   <div class="main">
     <h1 style="font-size:60px">Students</h1>
 
-    <div v-for="(data,index) in students" :key='index'>
-      <button class="list" v-on:click="view(data)">
+    <div v-for="(student,index) in students" :key='index'>
+      <button class="list" v-on:click="view(student)">
         <tbody>
           <tr> 
-            <td class="list-content-small">Name: {{data.stu_name}}</td>
+            <td class="list-content-small">Name: {{student.stu_name}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">ID Number: {{data.stu_id}}</td>
+            <td class="list-content-small">ID Number: {{student.stu_id}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Classification: {{data.stu_classification}}</td>
+            <td class="list-content-small">Classification: {{student.stu_classification}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Major: {{ data.majors[index] }}</td>
+            <td class="list-content-small">Major: {{ majors[index] }}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">GPA: {{data.stu_gpa}}</td>
+            <td class="list-content-small">GPA: {{student.stu_gpa}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Graduation Date: {{data.stu_grad_date}}</td>
+            <td class="list-content-small">Graduation Date: {{student.stu_grad_date}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Advisor: {{data.adv_id}}</td>
+            <td class="list-content-small">Advisor: {{student.adv_id}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours fulfilled: {{data.stu_hrs_taken}}</td>
+            <td class="list-content-small">Hours fulfilled: {{student.stu_hrs_taken}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours left: {{data.stu_hrs_not_taken}}</td>
+            <td class="list-content-small">Hours left: {{student.stu_hrs_not_taken}}</td>
           </tr>
         </tbody>
       </button>
