@@ -2,22 +2,6 @@
   <div class="main">
     <h1 style="font-size:60px">Students</h1>
 
-    <!--
-    <div>
-      <select v-model="selected"
-      @change="sort()" style="margin:10px; height:20px">
-        <option disabled value="">Sort</option>
-        <option>Course: A-Z</option>
-        <option>Course: Z-A</option>
-        <option>Professor: A-Z</option>
-        <option>Course: Asc#</option>
-      </select>
-
-      <input type="text" v-model="search" placeholder="Search" style="width: 40%; height: 30px"/>
-      <button v-on:click="searchItem()" style="width:7%; height: 36px; margin:10px;">Search</button>
-      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button> 
-    </div>
-    -->
     <div v-for="(data,index) in students" :key='index'>
       <button class="list" v-on:click="view(data)">
         <tbody>
@@ -57,13 +41,12 @@ export default {
         search: "",
         selected: ""
       }
-      
     },
     methods: {
         view: function(data){
-            this.$router.push({name: 'Profile', params: {name:data.stu_name, student:data}})
+            this.$router.push({name: 'Profile', params: {student_id:data.stu_id}})
           },
-        
+    },
     created() {
     axios
     .get("http://team2.eaglesoftwareteam.com/student")
@@ -75,8 +58,6 @@ export default {
       console.log("ERROR: " + error.response)
     })
   }
-
-}
 };
 </script>
 

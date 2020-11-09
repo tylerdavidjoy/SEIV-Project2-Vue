@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 style="font-size:60px">
-      {{ $route.params.name }}'s Profile
+      {{ student.stu_name }}'s Profile
     </h1>
 
     <table class = "list">
@@ -9,63 +9,63 @@
          <tr>
            <td><label>Name:</label></td>
            <td>        
-             <input type="text" v-model="$route.params.student.stu_name" placeholder="Name"/>
+             <input type="text" v-model="student.stu_name" placeholder="Name"/>
             </td>
         </tr>
 
         <tr>
            <td><label>ID Number:</label></td>
             <td>         
-              <input type="text" v-model="$route.params.student.stu_id" placeholder="ID Number"/>
+              <input type="text" v-model="student.stu_id" placeholder="ID Number"/>
             </td>
         </tr>
 
         <tr>
           <td><label>Advisor:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.adv_id" placeholder="Advisor" />
+            <input type="text" v-model="student.adv_id" placeholder="Advisor" />
           </td>
         </tr>
 
         <tr>
           <td><label>GPA:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.stu_gpa" placeholder="GPA" />
+            <input type="text" v-model="student.stu_gpa" placeholder="GPA" />
           </td>
         </tr>
 
         <tr>
           <td><label>Classification:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.stu_classification" placeholder="Classification" />
+            <input type="text" v-model="student.stu_classification" placeholder="Classification" />
           </td>
         </tr>
 
         <tr>
           <td><label>Graduation Date:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.stu_grad_date" placeholder="Graduation Date" />
+            <input type="text" v-model="student.stu_grad_date" placeholder="Graduation Date" />
           </td>
         </tr>
 
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.major_id" placeholder="Major" />
+            <input type="text" v-model="major.major_name" placeholder="Major" />
           </td>
         </tr>
 
         <tr>
           <td><label>Hours Taken:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.stu_hrs_taken" placeholder="Hours Taken" />
+            <input type="text" v-model="student.stu_hrs_taken" placeholder="Hours Taken" />
           </td>
         </tr>
 
         <tr>
           <td><label>Hours Left:</label></td>
           <td>        
-            <input type="text" v-model="$route.params.student.stu_hrs_not_taken" placeholder="Hours Taken" />
+            <input type="text" v-model="student.stu_hrs_not_taken" placeholder="Hours Taken" />
           </td>
         </tr>
 
@@ -73,27 +73,19 @@
     </table>
 
     <div>
-        <button v-on:click="planPage()">{{$route.params.name }}'s Plan</button>
+        <button v-on:click="planPage()">{{ student.stu_name }}'s Plan</button>
     </div>
 
   </div>
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   data() {
     return {
-      student: {
-        Student_Name: "",
-        Student_ID: "",
-        Student_Advisor: "",
-        Student_Hours_Taken: "",
-        Student_GPA: "",
-        Student_Classification: "",
-        Student_Hours_To_Graduate: "",
-        Student_Major: "",
-      }
+      student: [],
+      major: [],
     };
   },
   methods: {
@@ -101,6 +93,26 @@ export default {
             this.$router.push({name: 'Plan'})
           },
   },
+  created() {
+    axios
+    .get(`http://team2.eaglesoftwareteam.com/student?stuid=${this.$route.params.student_id}`)
+    .then(response => {
+      console.log(response.data)
+      this.student = response.data;
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get(`http://team2.eaglesoftwareteam.com/major?=major_id${this.student.major_id}`)
+    .then(response => {
+      console.log(response.data)
+      this.major = response.data;
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    })
+  }
 }; 
 </script>
 

@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
@@ -40,14 +41,100 @@
           id:"",
           name: "",
           imgURL: "",
-          email: ""
+          email: "",
+          role: "",
+          roleID:"",
+          planID:""
         }
       }
     },
     methods: {
       login: function() {
-        this.$router.push("/list");
+          this.getUser();
+      },
+
+      getUser() {
+        axios
+        .get("http://team2.eaglesoftwareteam.com/user?user_email=" + this.user.email)
+        .then(response => {
+          console.log(response.data)
+
+          if(response.data.length < 1){
+            this.createUser();
+          }
+
+          this.user.roleID = response.data.user_id;
+          this.user.role = response.data.user_role;
+          this.getRoleID();
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      })
+    },
+
+    createUser(){
+      var payload = {user_role:"student", user_email:this.user.email};
+      axios
+        .post("http://team2.eaglesoftwareteam.com/user", payload)
+        .then(response => {
+          console.log(response.data)
+          this.user.roleID = response.data.user_id;
+          this.user.role = response.data.user_role;
+          this.getRoleID();
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      })
+    },
+
+    getRoleID(){
+      var url = "";
+      if(this.user.role == "student"){
+        url = "http://team2.eaglesoftwareteam.com/student_user?user_id=" + this.user.id;
       }
+      else{
+        url = "http://team2.eaglesoftwareteam.com/advisor_user?userid=" + this.user.id;
+      }
+        axios
+        .get(url)
+        .then(response => {
+          console.log(response.data)
+          if(this.user.role == "student")
+          {
+            this.user.roleID = response.data.stu_id;
+            this.getPlan();
+          }
+          
+          else {
+            this.user.roleID = response.data.advisor_id;
+            this.navigate();
+          }
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+        return false;
+      })
+    },
+
+    getPlan(){
+      axios
+        .get("http://team2.eaglesoftwareteam.com/plan?stu_id=" + this.user.roleID)
+        .then(response => {
+          console.log(response.data)
+          this.user.planID = response.data.plan_id;
+          window.user = this.user;
+          this.navigate();
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+        return false;
+      })
+    },
+
+    navigate(){
+      //this.$router.push("/list");
+    }
+
     }
   };
 </script>
