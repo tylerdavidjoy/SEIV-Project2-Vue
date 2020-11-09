@@ -49,7 +49,7 @@ export default {
           },
           getMajorName: function(id){
             axios
-            .get(`http://team2.eaglesoftwareteam.com/major?major_id=${id}`)
+            .get(`http://team2.eaglesoftwareteam.com/major?id=${id}`)
             .then(response => {
               console.log(response.data)
               this.majors.push(response.data.major_name);
