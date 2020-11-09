@@ -51,7 +51,7 @@
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="student.major_id" placeholder="Major" />
+            <input type="text" v-model="major.major_name" placeholder="Major" />
           </td>
         </tr>
 
@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       student: [],
+      major: [],
     };
   },
   methods: {
@@ -98,6 +99,15 @@ export default {
     .then(response => {
       console.log(response.data)
       this.student = response.data;
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get(`http://team2.eaglesoftwareteam.com/major?=major_id${this.student.major_id}`)
+    .then(response => {
+      console.log(response.data)
+      this.major = response.data;
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
