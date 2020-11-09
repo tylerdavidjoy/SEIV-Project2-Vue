@@ -36,8 +36,8 @@ export default {
   name: "Students",
   data() {
     return {
-      students: [],
-      majors: [],
+        students: [],
+        majors: [],
         hover: false,
         search: "",
         selected: ""
@@ -65,6 +65,12 @@ export default {
     .then(response => {
       console.log(response.data)
       this.students = response.data;
+
+      for(let i = 0; i < this.students.length; i++)
+      {
+        this.majors.push(this.getMajorName(this.students[i].major_id));
+      }
+
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
