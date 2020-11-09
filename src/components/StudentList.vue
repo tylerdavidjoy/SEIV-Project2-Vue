@@ -12,7 +12,7 @@
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">Classification: {{student.stu_classification}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Major: {{ majors[index] }}</td>
+            <td class="list-content-small">Major: {{  }}</td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">GPA: {{student.stu_gpa}}</td>
             <td style="color:#C0C0C0">______</td>
@@ -37,7 +37,6 @@ export default {
   data() {
     return {
         students: [],
-        majors: [],
         hover: false,
         search: "",
         selected: ""
@@ -47,17 +46,6 @@ export default {
         view: function(data){
             this.$router.push({name: 'Profile', params: {student_id:data.stu_id}})
           },
-          getMajorName: function(id){
-            axios
-            .get(`http://team2.eaglesoftwareteam.com/major?id=${id}`)
-            .then(response => {
-              console.log(response.data)
-              this.majors.push(response.data.major_name);
-            })
-            .catch(error => {
-              console.log("ERROR: " + error.response)
-            })
-          }
     },
     created() {
     axios
@@ -65,12 +53,6 @@ export default {
     .then(response => {
       console.log(response.data)
       this.students = response.data;
-
-      for(let i = 0; i < this.students.length; i++)
-      {
-        this.getMajorName(this.students[i].major_id);
-      }
-
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
