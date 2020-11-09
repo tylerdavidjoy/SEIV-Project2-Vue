@@ -51,7 +51,7 @@
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="major[0].major_name" placeholder="Major" />
+            <input type="text" v-model="major.major_name" placeholder="Major" />
           </td>
         </tr>
 
@@ -107,7 +107,7 @@ export default {
     .get(`http://team2.eaglesoftwareteam.com/major?=major_id${this.student.major_id}`)
     .then(response => {
       console.log(response.data)
-      this.major = response.data;
+      this.major = response.data[0];
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
