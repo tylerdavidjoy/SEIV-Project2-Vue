@@ -93,7 +93,7 @@ export default {
       console.log(response.data)
       response.data.forEach((data => {
         this.advisorTable[data.advisor_id] = data.advisor_name;
-      })
+      }))
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
