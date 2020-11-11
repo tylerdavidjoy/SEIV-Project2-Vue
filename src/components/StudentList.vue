@@ -12,13 +12,13 @@
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">Classification: {{student.stu_classification}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Major: {{  }}</td>
+            <td class="list-content-small">Major: {{ student.stu_major }}</td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">GPA: {{student.stu_gpa}}</td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">Graduation Date: {{student.stu_grad_date}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Advisor: {{student.adv_id}}</td>
+            <td class="list-content-small">Advisor: {{student.stu_adv}}</td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">Hours fulfilled: {{student.stu_hrs_taken}}</td>
             <td style="color:#C0C0C0">______</td>
@@ -36,6 +36,9 @@ export default {
   name: "Students",
   data() {
     return {
+        studentTable: [],
+        majorTable: [],
+        advisorTable: [],
         students: [],
         hover: false,
         search: "",
@@ -46,13 +49,51 @@ export default {
         view: function(data){
             this.$router.push({name: 'Profile', params: {student_id:data.stu_id}})
           },
+        buildStudents: function(){
+            this.studentTable.forEach((student) => {
+              students.push({
+                stu_name: student.stu_name,
+                stu_id: student.stu_id,
+                stu_classification: student.stu_classification,
+                stu_major: this.majorTable[student.major_id],
+                stu_gpa: student.stu_gpa,
+                stu_grad_date: student.stu_grad_date,
+                stu_adv: this.advisorTable[student.advisor_id],
+                stu_hrs_taken: student.stu_hrs_taken,
+                stu_hrs_not_taken: student.stu_hrs_not_taken
+              })
+            })
+        },
     },
     created() {
     axios
     .get("http://team2.eaglesoftwareteam.com/student")
     .then(response => {
       console.log(response.data)
-      this.students = response.data;
+      this.studentTable = response.data;
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get("http://team2.eaglesoftwareteam.com/major")
+    .then(response => {
+      console.log(response.data)
+
+      response.data.forEach((data, index) => {
+        this.majorTable[data.major_id] = data.major_name;
+      })
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get("http://team2.eaglesoftwareteam.com/advisor")
+    .then(response => {
+      console.log(response.data)
+      response.data.forEach((data => {
+        this.advisorTable[data.advisor_id] = data.advisor_name;
+      })
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
