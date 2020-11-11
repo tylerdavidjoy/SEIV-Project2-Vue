@@ -51,7 +51,7 @@ export default {
           },
         buildStudents: function(){
             this.studentTable.forEach((student) => {
-              students.push({
+              this.students.push({
                 stu_name: student.stu_name,
                 stu_id: student.stu_id,
                 stu_classification: student.stu_classification,
@@ -80,7 +80,7 @@ export default {
     .then(response => {
       console.log(response.data)
 
-      response.data.forEach((data, index) => {
+      response.data.forEach((data) => {
         this.majorTable[data.major_id] = data.major_name;
       })
     })
