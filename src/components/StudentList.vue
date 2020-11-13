@@ -2,7 +2,7 @@
   <div class="main">
     <h1 style="font-size:60px">Students</h1>
 
-    <div v-for="(student,index) in students" :key='index'>
+    <div v-for="(data,index) in display" :key='index'>
       <button class="list" v-on:click="view(student)">
         <tbody>
           <tr> 
@@ -27,6 +27,8 @@
         </tbody>
       </button>
     </div>
+    <button v-on:click="changePage('previous')" style="width:7%; height: 36px; margin:10px;">Previous</button>
+    <button v-on:click="changePage('next')" style="width:7%; height: 36px; margin:10px;">Next</button>
   </div>
 </template>
 
@@ -40,6 +42,8 @@ export default {
         majorTable: [],
         advisorTable: [],
         students: [],
+        page: 1,
+        numPerPage:10,
         hover: false,
         search: "",
         selected: ""
@@ -63,6 +67,33 @@ export default {
                 stu_hrs_not_taken: student.stu_hrs_not_taken
               })
             })
+        },
+        updateDisplay: function () {
+          this.display = [];
+          console.log("Update");
+          if(this.courses.length == 0){
+            console.log("No courses");
+            return;
+          }
+
+          for(var i = ((this.page - 1) * this.numPerPage); i < (this.page * this.numPerPage); i++){
+            this.display.push(this.courses[i]);
+          }
+          console.log(this.display);
+        },
+        changePage: function(direction){
+          if(direction == "next"){
+            if(this.page+1 * this.numPerPage < this.courses.length)
+            this.page++;
+          }
+
+          if(direction == "previous"){
+            if(this.page > 1){
+              this.page--;
+            }
+          }
+
+          this.updateDisplay();
         },
     },
     created() {
