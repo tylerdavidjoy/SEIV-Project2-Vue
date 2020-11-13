@@ -9,63 +9,63 @@
          <tr>
            <td><label>Name:</label></td>
            <td>        
-             <input type="text" v-model="student.stu_name" placeholder="Name"/>
+             <input type="text" v-model="student.stu_name" placeholder="ex. Billy Bob"/>
             </td>
         </tr>
 
         <tr>
            <td><label>ID Number:</label></td>
             <td>         
-              <input type="text" v-model="student.stu_id" placeholder="ID Number" disabled/>
+              <input type="text" v-model="student.stu_id" placeholder="ex. 1234567" disabled/>
             </td>
         </tr>
 
         <tr>
           <td><label>Advisor:</label></td>
           <td>        
-            <input type="text" v-model="advisor.advisor_name" placeholder="Advisor" disabled/>
+            <input type="text" v-model="advisor.advisor_name" placeholder="ex. Don Leftwich" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>GPA:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_gpa" placeholder="GPA" disabled/>
+            <input type="text" v-model="student.stu_gpa" placeholder="ex. 3.89" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Classification:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_classification" placeholder="Classification" disabled/>
+            <input type="text" v-model="student.stu_classification" placeholder="ex. Senior" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Graduation Date:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_grad_date" placeholder="Graduation Date" />
+            <input type="text" v-model="student.stu_grad_date" placeholder="format: yyyy-mm-dd hh:mm:ss" />
           </td>
         </tr>
 
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="major.major_name" placeholder="Major" disabled/>
+            <input type="text" v-model="major.major_name" placeholder="ex. Computer Science" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Hours Taken:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_hrs_taken" placeholder="Hours Taken" disabled/>
+            <input type="text" v-model="student.stu_hrs_taken" placeholder="ex. 120" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Hours Left:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_hrs_not_taken" placeholder="Hours Left" disabled/>
+            <input type="text" v-model="student.stu_hrs_not_taken" placeholder="ex. 120" disabled/>
           </td>
         </tr>
 
@@ -108,7 +108,7 @@ export default {
               stu_gpa: Number(this.student.stu_gpa),
               stu_name: this.student.stu_name,
               stu_hrs_taken: Number(this.student.stu_hrs_taken),
-              stu_grad_date: this.student.stu_grad_date,
+              stu_grad_date: getDateFromFormat(this.student.stu_grad_date, "yyyy-mm-dd hh:mm:ss"),
               stu_hrs_not_taken: Number(this.student.stu_hrs_not_taken),
               stu_classification: this.student.stu_classification,
             }
