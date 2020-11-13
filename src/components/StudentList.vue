@@ -6,23 +6,25 @@
       <button class="list" v-on:click="view(student)">
         <tbody>
           <tr> 
-            <td class="list-content-small">Name: {{student.stu_name}}</td>
+            <td class="list-content-small">{{student.stu_name}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">ID Number: {{student.stu_id}}</td>
+            <td class="list-content-small">ID: {{student.stu_id}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Classification: {{student.stu_classification}}</td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Major: {{ student.stu_major }}</td>
+            <td class="list-content-small">{{student.stu_classification}}</td>
+          </tr>
+          <tr>
+            <td class="list-content-small">{{ student.stu_major }}</td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">GPA: {{student.stu_gpa}}</td>
             <td style="color:#C0C0C0">______</td>
             <td class="list-content-small">Graduation Date: {{student.stu_grad_date}}</td>
-            <td style="color:#C0C0C0">______</td>
+          </tr>
+          <tr>
             <td class="list-content-small">Advisor: {{student.stu_adv}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours fulfilled: {{student.stu_hrs_taken}}</td>
+            <td class="list-content-small">Hours earned: {{student.stu_hrs_taken}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours left: {{student.stu_hrs_not_taken}}</td>
+            <td class="list-content-small">Hours remaining: {{student.stu_hrs_not_taken}}</td>
           </tr>
         </tbody>
       </button>
