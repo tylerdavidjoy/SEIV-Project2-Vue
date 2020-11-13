@@ -108,7 +108,7 @@ export default {
               stu_gpa: Number(this.student.stu_gpa),
               stu_name: this.student.stu_name,
               stu_hrs_taken: Number(this.student.stu_hrs_taken),
-              stu_grad_date: getDateFromFormat(this.student.stu_grad_date, "yyyy-mm-dd hh:mm:ss"),
+              stu_grad_date: this.student.stu_grad_date,
               stu_hrs_not_taken: Number(this.student.stu_hrs_not_taken),
               stu_classification: this.student.stu_classification,
             }
