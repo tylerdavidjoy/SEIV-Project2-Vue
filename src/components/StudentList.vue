@@ -22,9 +22,9 @@
           <tr>
             <td class="list-content-small">Advisor: {{student.stu_adv}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours fulfilled: {{student.stu_hrs_taken}}</td>
+            <td class="list-content-small">Hours earned: {{student.stu_hrs_taken}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours left: {{student.stu_hrs_not_taken}}</td>
+            <td class="list-content-small">Hours remaining: {{student.stu_hrs_not_taken}}</td>
           </tr>
         </tbody>
       </button>
