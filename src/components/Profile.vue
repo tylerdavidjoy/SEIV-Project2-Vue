@@ -120,8 +120,6 @@ export default {
             console.log("ERROR: " + error.response);
             // Display  on page and ddon't change page
           });
-      // Go back to select page
-      this.backToList();
     },
     backToList: function(){
       this.$router.push({name: 'StudentList'})
