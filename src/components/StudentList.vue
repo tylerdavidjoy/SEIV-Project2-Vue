@@ -71,19 +71,19 @@ export default {
         updateDisplay: function () {
           this.display = [];
           console.log("Update");
-          if(this.courses.length == 0){
-            console.log("No courses");
+          if(this.students.length == 0){
+            console.log("No students");
             return;
           }
 
           for(var i = ((this.page - 1) * this.numPerPage); i < (this.page * this.numPerPage); i++){
-            this.display.push(this.courses[i]);
+            this.display.push(this.students[i]);
           }
           console.log(this.display);
         },
         changePage: function(direction){
           if(direction == "next"){
-            if(this.page+1 * this.numPerPage < this.courses.length)
+            if(this.page+1 * this.numPerPage < this.students.length)
             this.page++;
           }
 
@@ -126,6 +126,7 @@ export default {
         this.advisorTable[data.advisor_id] = data.advisor_name;
 
         this.buildStudents();
+        this.updateDisplay();
       }))
     })
     .catch(error => {
