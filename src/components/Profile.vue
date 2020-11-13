@@ -44,7 +44,7 @@
         <tr>
           <td><label>Graduation Date:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_grad_date" placeholder="format: yyyy-mm-dd hh:mm:ss" />
+            <input type="text" v-model="student.stu_grad_date" placeholder="yyyy-mm-dd hh:mm:ss" />
           </td>
         </tr>
 
