@@ -44,7 +44,7 @@ export default {
         students: [],
         display: [],
         page: 1,
-        numPerPage:10,
+        numPerPage:3,
         hover: false,
         search: "",
         selected: ""
