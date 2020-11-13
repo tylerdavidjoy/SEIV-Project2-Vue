@@ -16,28 +16,28 @@
         <tr>
            <td><label>ID Number:</label></td>
             <td>         
-              <input type="text" v-model="student.stu_id" placeholder="ID Number"/>
+              <input type="text" v-model="student.stu_id" placeholder="ID Number" disabled/>
             </td>
         </tr>
 
         <tr>
           <td><label>Advisor:</label></td>
           <td>        
-            <input type="text" v-model="student.adv_id" placeholder="Advisor" />
+            <input type="text" v-model="advisor.advisor_name" placeholder="Advisor" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>GPA:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_gpa" placeholder="GPA" />
+            <input type="text" v-model="student.stu_gpa" placeholder="GPA" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Classification:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_classification" placeholder="Classification" />
+            <input type="text" v-model="student.stu_classification" placeholder="Classification" disabled/>
           </td>
         </tr>
 
@@ -51,28 +51,29 @@
         <tr>
           <td><label>Major:</label></td>
           <td>        
-            <input type="text" v-model="major.major_name" placeholder="Major" />
+            <input type="text" v-model="major.major_name" placeholder="Major" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Hours Taken:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_hrs_taken" placeholder="Hours Taken" />
+            <input type="text" v-model="student.stu_hrs_taken" placeholder="Hours Taken" disabled/>
           </td>
         </tr>
 
         <tr>
           <td><label>Hours Left:</label></td>
           <td>        
-            <input type="text" v-model="student.stu_hrs_not_taken" placeholder="Hours Taken" />
+            <input type="text" v-model="student.stu_hrs_not_taken" placeholder="Hours Left" disabled/>
           </td>
         </tr>
 
       </tbody>
     </table>
-
     <div>
+        <button v-on:click="cSave()">Save</button>
+        <button v-on:click="backToList()">Cancel</button>
         <button v-on:click="planPage()">{{ student.stu_name }}'s Plan</button>
     </div>
 
@@ -86,12 +87,42 @@ export default {
     return {
       student: [],
       major: [],
+      advisor: [],
     };
   },
   methods: {
       planPage(){
-            this.$router.push({name: 'Plan'})
+            this.$router.push({name: 'StudentList'})
           },
+      cSave: function() {
+      // Save the course
+        axios
+          .put(
+            "http://team2.eaglesoftwareteam.com/student?=stuid" +
+              this.$route.params.student_id,
+            {
+              stu_id: Number(this.student.stu_id),
+              major_id: Number(this.student.major_id),
+              plan_id: Number(this.student.plan_id),
+              adv_id: Number(this.student.adv_id),
+              stu_gpa: Number(this.student.stu_gpa),
+              stu_name: this.student.stu_name,
+              stu_hrs_taken: Number(this.student.stu_hrs_taken),
+              stu_grad_date: this.student.stu_grad_date,
+              stu_hrs_not_taken: Number(this.student.stu_hrs_not_taken),
+              stu_classification: this.student.stu_classification,
+            }
+          )
+          .then(() => {
+            this.backToList();
+          })
+          .catch((error) => {
+            console.log("ERROR: " + error.response);
+            // Display  on page and ddon't change page
+          });
+      // Go back to select page
+      this.backToList();
+    },
   },
   created() {
     axios
@@ -108,6 +139,15 @@ export default {
     .then(response => {
       console.log(response.data)
       this.major = response.data;
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get(`http://team2.eaglesoftwareteam.com/advisor?advid=${this.student.advisor_id}`)
+    .then(response => {
+      console.log(response.data)
+      this.advisor = response.data;
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
