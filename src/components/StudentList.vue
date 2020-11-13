@@ -2,7 +2,7 @@
   <div class="main">
     <h1 style="font-size:60px">Students</h1>
 
-    <div v-for="(data,index) in display" :key='index'>
+    <div v-for="(student,index) in display" :key='index'>
       <button class="list" v-on:click="view(student)">
         <tbody>
           <tr> 
@@ -42,6 +42,7 @@ export default {
         majorTable: [],
         advisorTable: [],
         students: [],
+        display: [],
         page: 1,
         numPerPage:10,
         hover: false,
