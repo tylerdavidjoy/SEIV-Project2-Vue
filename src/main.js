@@ -34,7 +34,7 @@ function getUser(profile,email) {
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
-    createUser(email);
+    createUser(profile,email);
   })
 };
 
