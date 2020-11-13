@@ -92,7 +92,7 @@ export default {
   },
   methods: {
       planPage(){
-            this.$router.push({name: 'StudentList'})
+            this.$router.push({name: 'Plan'})
           },
       cSave: function() {
       // Save the course
@@ -123,6 +123,9 @@ export default {
       // Go back to select page
       this.backToList();
     },
+    backToList: function(){
+      this.$router.push({name: 'StudentList'})
+    }
   },
   created() {
     axios
