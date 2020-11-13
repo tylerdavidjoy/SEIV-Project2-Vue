@@ -93,6 +93,8 @@ export default {
       console.log(response.data)
       response.data.forEach((data => {
         this.advisorTable[data.advisor_id] = data.advisor_name;
+
+        this.buildStudents();
       }))
     })
     .catch(error => {
