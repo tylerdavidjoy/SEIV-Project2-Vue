@@ -34,10 +34,10 @@ function getUser(profile,email) {
   })
   .catch(error => {
     console.log("ERROR: " + error.response)
-    createUser(email);
+    createUser(profile,email);
   })
 };
-
+//
 function createUser(profile,email){
   var payload = {user_role:"student", user_email:email};
   axios

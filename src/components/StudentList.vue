@@ -2,31 +2,35 @@
   <div class="main">
     <h1 style="font-size:60px">Students</h1>
 
-    <div v-for="(data,index) in students" :key='index'>
-      <button class="list" v-on:click="view(data)">
+    <div v-for="(student,index) in display" :key='index'>
+      <button class="list" v-on:click="view(student)">
         <tbody>
           <tr> 
-            <td class="list-content-small">Name: {{data.stu_name}}</td>
+            <td class="list-content-small">{{student.stu_name}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">ID Number: {{data.stu_id}}</td>
+            <td class="list-content-small">ID: {{student.stu_id}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Classification: {{data.stu_classification}}</td>
+            <td class="list-content-small">{{student.stu_classification}}</td>
+          </tr>
+          <tr>
+            <td class="list-content-small">{{ student.stu_major }}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Major: {{data.major_id}}</td>
+            <td class="list-content-small">GPA: {{student.stu_gpa}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">GPA: {{data.stu_gpa}}</td>
+            <td class="list-content-small">Graduation Date: {{student.stu_grad_date}}</td>
+          </tr>
+          <tr>
+            <td class="list-content-small">Advisor: {{student.stu_adv}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Graduation Date: {{data.stu_grad_date}}</td>
+            <td class="list-content-small">Hours earned: {{student.stu_hrs_taken}}</td>
             <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Advisor: {{data.adv_id}}</td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours fulfilled: {{data.stu_hrs_taken}}</td>
-            <td style="color:#C0C0C0">______</td>
-            <td class="list-content-small">Hours left: {{data.stu_hrs_not_taken}}</td>
+            <td class="list-content-small">Hours remaining: {{student.stu_hrs_not_taken}}</td>
           </tr>
         </tbody>
       </button>
     </div>
+    <button v-on:click="changePage('previous')" style="width:7%; height: 36px; margin:10px;">Previous</button>
+    <button v-on:click="changePage('next')" style="width:7%; height: 36px; margin:10px;">Next</button>
   </div>
 </template>
 
@@ -36,7 +40,13 @@ export default {
   name: "Students",
   data() {
     return {
-      students: [],
+        studentTable: [],
+        majorTable: [],
+        advisorTable: [],
+        students: [],
+        display: [],
+        page: 1,
+        numPerPage:3,
         hover: false,
         search: "",
         selected: ""
@@ -46,13 +56,81 @@ export default {
         view: function(data){
             this.$router.push({name: 'Profile', params: {student_id:data.stu_id}})
           },
+        buildStudents: function(){
+            this.studentTable.forEach((student) => {
+              this.students.push({
+                stu_name: student.stu_name,
+                stu_id: student.stu_id,
+                stu_classification: student.stu_classification,
+                stu_major: this.majorTable[student.major_id],
+                stu_gpa: student.stu_gpa,
+                stu_grad_date: student.stu_grad_date,
+                stu_adv: this.advisorTable[student.advisor_id],
+                stu_hrs_taken: student.stu_hrs_taken,
+                stu_hrs_not_taken: student.stu_hrs_not_taken
+              })
+            })
+        },
+        updateDisplay: function () {
+          this.display = [];
+          console.log("Update");
+          if(this.students.length == 0){
+            console.log("No students");
+            return;
+          }
+
+          for(var i = ((this.page - 1) * this.numPerPage); i < (this.page * this.numPerPage); i++){
+            this.display.push(this.students[i]);
+          }
+          console.log(this.display);
+        },
+        changePage: function(direction){
+          if(direction == "next"){
+            if(this.page+1 * this.numPerPage < this.students.length)
+            this.page++;
+          }
+
+          if(direction == "previous"){
+            if(this.page > 1){
+              this.page--;
+            }
+          }
+
+          this.updateDisplay();
+        },
     },
     created() {
     axios
     .get("http://team2.eaglesoftwareteam.com/student")
     .then(response => {
       console.log(response.data)
-      this.students = response.data;
+      this.studentTable = response.data;
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get("http://team2.eaglesoftwareteam.com/major")
+    .then(response => {
+      console.log(response.data)
+
+      response.data.forEach((data) => {
+        this.majorTable[data.major_id] = data.major_name;
+      })
+    })
+    .catch(error => {
+      console.log("ERROR: " + error.response)
+    }),
+    axios
+    .get("http://team2.eaglesoftwareteam.com/advisor")
+    .then(response => {
+      console.log(response.data)
+      response.data.forEach((data => {
+        this.advisorTable[data.advisor_id] = data.advisor_name;
+
+        this.buildStudents();
+        this.updateDisplay();
+      }))
     })
     .catch(error => {
       console.log("ERROR: " + error.response)
