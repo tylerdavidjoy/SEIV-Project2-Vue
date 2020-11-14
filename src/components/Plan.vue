@@ -306,43 +306,45 @@ export default {
         return course;
      },
      addCourse(temp){
+      console.log("AddCourse: " + this.$route.params.semester);
+
       var course = {Course_id: temp.Course_Id, Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit, Course_Grade: ''}
       switch(this.$route.params.semester){
               case "freshmanF":
                 this.semesters.freshmanF.push(course);
                 this.empty = false;
-                this.addCourseDB(0);
+                this.addCourseDB(0,course);
                 break;
               case "freshmanS":
                 this.semesters.freshmanS.push(course);
-                this.addCourseDB(1);
+                this.addCourseDB(1,course);
                 break;
               case "sophmoreF":
                 this.semesters.sophmoreF.push(course);
                 this.empty = false;
-                this.addCourseDB(2);
+                this.addCourseDB(2,course);
                 break;
               case "sophmoreS":
                 this.semesters.sophmoreS.push(course);
-                this.addCourseDB(3);
+                this.addCourseDB(3,course);
                 break;
               case "juniorF":
                 this.semesters.juniorF.push(course);
                 this.empty = false;
-                this.addCourseDB(4);
+                this.addCourseDB(4,course);
                 break;
               case "juniorS":
                 this.semesters.juniorS.push(course);
-                this.addCourseDB(5);
+                this.addCourseDB(5,course);
                 break;
               case "seniorF":
                 this.semesters.seniorF.push(course);
                 this.empty = false;
-                this.addCourseDB(6);
+                this.addCourseDB(6,course);
                 break;
               case "seniorS":
                 this.semesters.seniorS.push(course);
-                this.addCourseDB(7);
+                this.addCourseDB(7,course);
                 break;
             }
      },
