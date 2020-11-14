@@ -418,6 +418,11 @@ export default {
         .then(response => {
           console.log(response.data)
           this.semestersDB = response.data;
+
+              if(this.$route.params.semester){
+                this.getCourse();      
+              }
+              
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
@@ -501,10 +506,6 @@ export default {
   },
   created(){
     console.log(this.user);
-
-    if(this.$route.params.semester){
-      this.getCourse();      
-    }
 
       if(this.semesters.freshmanF.length > 0 || this.semesters.sophmoreF.length > 0 || this.semesters.juniorF.length > 0 || this.semesters.seniorF.length > 0){
         this.empty = false;
