@@ -281,7 +281,8 @@ export default {
       seF: "  Senior Fall  ",
       seS: " Senior Spring ",
       empty: true,
-      user: window.user
+      user: window.user,
+      semesterDB: []
     };
   },
   methods:{
@@ -431,13 +432,13 @@ export default {
      },
 
      getCourses(){
-       for(var i = 0; i < length(this.semesters); i++)
+       for(var i = 0; i < length(this.semestersDB); i++)
        {
           axios
-          .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semesters[i].semester_id)
+          .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
           .then(response => {
             console.log(response.data)
-            this.semesterers[i] = response.data;
+            this.semesters[i] = response.data;
         })
         .catch(error => {
           console.log("ERROR: " + error.response)
