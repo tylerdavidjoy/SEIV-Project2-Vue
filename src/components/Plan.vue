@@ -439,8 +439,34 @@ export default {
           axios
           .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
           .then(response => {
-            console.log(response.data)
-            this.semesters[i] = response.data;
+            console.log(response.data);
+
+              switch(i){
+              case 0:
+                this.semesters.freshmanF = response.data;
+                break;
+              case 1:
+                this.semesters.freshmanS = response.data;
+                break;
+              case 2:
+                this.semesters.sophmoreF = response.data;
+                break;
+              case 3:
+                this.semesters.sophmoreS = response.data;
+                break;
+              case 4:
+                this.semesters.juniorF = response.data;
+                break;
+              case 5:
+                this.semesters.juniorS = response.data;
+                break;
+              case 6:
+                this.semesters.seniorF = response.data;
+                break;
+              case 7:
+                this.semesters.seniorS = response.data;
+                break;
+            }
         })
         .catch(error => {
           console.log("ERROR: " + error.response)
