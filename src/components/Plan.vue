@@ -289,16 +289,16 @@ export default {
     selectCourse(sem) {
       this.$router.push({name: 'ListView', params: {semester:sem}})
     },
-     getCourse(){
+     getCourse(dbAdd,id, semester){
        var course = {};
         axios
         .get(
-          "http://team2.eaglesoftwareteam.com/courses/id=" + this.$route.params.id
+          "http://team2.eaglesoftwareteam.com/courses/id=" + id
         )
         .then((response) => {
           console.log(response.data);
           course = response.data;
-          this.addCourse(course)
+          this.addCourse(course,dbAdd,semester)
         })
         .catch((error) => {
           console.log("ERROR: " + error.response);
@@ -306,46 +306,64 @@ export default {
 
         return course;
      },
-     addCourse(temp){
+     addCourse(temp,dbAdd,semester){
       console.log("AddCourse: " + this.$route.params.semester);
 
       var course = {Course_id: temp.Course_Id, Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit, Course_Grade: ''}
-      switch(this.$route.params.semester){
+      switch(semester){
               case "freshmanF":
                 this.semesters.freshmanF.push(course);
                 this.empty = false;
-                this.addCourseDB(0,course);
+                
+                if(dbAdd){
+                  this.addCourseDB(0,course);
+                }
+
                 break;
               case "freshmanS":
                 this.semesters.freshmanS.push(course);
-                this.addCourseDB(1,course);
+                if(dbAdd){
+                  this.addCourseDB(1,course);
+                }
                 break;
               case "sophmoreF":
                 this.semesters.sophmoreF.push(course);
                 this.empty = false;
-                this.addCourseDB(2,course);
+                if(dbAdd){
+                  this.addCourseDB(1,course);
+                }
                 break;
               case "sophmoreS":
                 this.semesters.sophmoreS.push(course);
-                this.addCourseDB(3,course);
+                if(dbAdd){
+                  this.addCourseDB(3,course);
+                }
                 break;
               case "juniorF":
                 this.semesters.juniorF.push(course);
                 this.empty = false;
-                this.addCourseDB(4,course);
+                if(dbAdd){
+                  this.addCourseDB(4,course);
+                }
                 break;
               case "juniorS":
                 this.semesters.juniorS.push(course);
-                this.addCourseDB(5,course);
+                if(dbAdd){
+                  this.addCourseDB(5,course);
+                }
                 break;
               case "seniorF":
                 this.semesters.seniorF.push(course);
                 this.empty = false;
-                this.addCourseDB(6,course);
+                if(dbAdd){
+                  this.addCourseDB(6,course);
+                }
                 break;
               case "seniorS":
                 this.semesters.seniorS.push(course);
-                this.addCourseDB(7,course);
+                if(dbAdd){
+                  this.addCourseDB(7,course);
+                }
                 break;
             }
      },
@@ -422,7 +440,7 @@ export default {
           this.getCourses();
 
           if(this.$route.params.semester){
-            this.getCourse();      
+            this.getCourse(true, this.$route.params.id,this.$route.params.semester);      
           }
 
       })
@@ -441,32 +459,10 @@ export default {
           .then(response => {
             console.log(response.data);
 
-              switch(i){
-              case 0:
-                this.semesters.freshmanF = response.data;
-                break;
-              case 1:
-                this.semesters.freshmanS = response.data;
-                break;
-              case 2:
-                this.semesters.sophmoreF = response.data;
-                break;
-              case 3:
-                this.semesters.sophmoreS = response.data;
-                break;
-              case 4:
-                this.semesters.juniorF = response.data;
-                break;
-              case 5:
-                this.semesters.juniorS = response.data;
-                break;
-              case 6:
-                this.semesters.seniorF = response.data;
-                break;
-              case 7:
-                this.semesters.seniorS = response.data;
-                break;
+            for(var x = 0; x < response.data.length; x++){
+              this.getCourse(false,response.data[x].course_id,i)
             }
+    
         })
         .catch(error => {
           console.log("ERROR: " + error.response)
