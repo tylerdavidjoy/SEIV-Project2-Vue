@@ -392,7 +392,7 @@ export default {
        var payload = {semester_id: this.semestersDB[semesterIndex].semester_id, course_id: course.Course_id, grade: course.Course_Grade};
        console.log(payload);
         axios
-        .post("http://team2.eaglesoftwareteam.com/semester_courses", JSON.parse(payload))
+        .post("http://team2.eaglesoftwareteam.com/semester_courses", payload)
         .then(response => {
           console.log(response.data)
         })
