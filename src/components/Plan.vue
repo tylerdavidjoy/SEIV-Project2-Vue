@@ -431,7 +431,7 @@ export default {
      },
 
      getCourses(){
-       for(i in range(len(this.semesters)))
+       for(var i = 0; i < length(this.semesters); i++)
        {
           axios
           .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semesters[i].semester_id)
