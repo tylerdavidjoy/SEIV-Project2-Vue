@@ -418,15 +418,32 @@ export default {
         .then(response => {
           console.log(response.data)
           this.semestersDB = response.data;
+          this.getCourses();
 
-              if(this.$route.params.semester){
-                this.getCourse();      
-              }
+          if(this.$route.params.semester){
+            this.getCourse();      
+          }
 
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
       })  
+     },
+
+     getCourses(){
+       for(i in range(len(this.semesters)))
+       {
+          axios
+          .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semesters[i].semester_id)
+          .then(response => {
+            console.log(response.data)
+            this.semesterers[i] = response.data;
+        })
+        .catch(error => {
+          console.log("ERROR: " + error.response)
+        }) 
+      }
+       
      },
 
     createPDF(){
