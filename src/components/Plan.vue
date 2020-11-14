@@ -432,6 +432,7 @@ export default {
      },
 
      getCourses(){
+       console.log(this.semestersDB);
        for(var i = 0; i < length(this.semestersDB); i++)
        {
           axios
