@@ -69,6 +69,7 @@ import axios from 'axios'
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
+        this.createUser();
       })
     },
 

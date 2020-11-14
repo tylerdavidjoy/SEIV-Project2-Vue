@@ -17,7 +17,7 @@ window.onSignIn = function (googleUser) {
 //      userData = {user_id:userID,role_type:role, role_id: roleID, plan_id:planID};
   
   getUser(profile,profile.getEmail()); //Ask backend for user data UNCOMMENT WHEN BACKEND IS FIXED
-  console.log(window.user);
+
 };
 
 getUser.use;
@@ -111,7 +111,6 @@ function setGlobalUser(profile,userID,role,roleID,planID){
     role_id: roleID,
     plan_id: planID
   }; 
-
-
+  
   console.log(window.user);
 }
