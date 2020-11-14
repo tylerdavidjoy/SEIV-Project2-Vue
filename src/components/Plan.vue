@@ -436,7 +436,7 @@ export default {
        for(var i = 0; i < length(this.semestersDB); i++)
        {
          console.log(this.semestersDB[i].semester_id);
-          axios
+       /*    axios
           .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
           .then(response => {
             console.log(response.data)
@@ -444,7 +444,7 @@ export default {
         })
         .catch(error => {
           console.log("ERROR: " + error.response)
-        }) 
+        }) */ 
       }
        
      },
