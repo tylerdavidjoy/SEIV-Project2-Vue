@@ -312,6 +312,7 @@ export default {
       var course = {Course_id: temp.Course_Id, Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit, Course_Grade: ''}
       switch(semester){
               case "freshmanF":
+              case 0:
                 this.semesters.freshmanF.push(course);
                 this.empty = false;
                 
@@ -320,46 +321,60 @@ export default {
                 }
 
                 break;
+
               case "freshmanS":
+              case 1:
                 this.semesters.freshmanS.push(course);
                 if(dbAdd){
                   this.addCourseDB(1,course);
                 }
                 break;
+
               case "sophmoreF":
+              case 2:
                 this.semesters.sophmoreF.push(course);
                 this.empty = false;
                 if(dbAdd){
                   this.addCourseDB(1,course);
                 }
                 break;
+
               case "sophmoreS":
+              case 3:
                 this.semesters.sophmoreS.push(course);
                 if(dbAdd){
                   this.addCourseDB(3,course);
                 }
                 break;
+
               case "juniorF":
+              case 4:
                 this.semesters.juniorF.push(course);
                 this.empty = false;
                 if(dbAdd){
                   this.addCourseDB(4,course);
                 }
                 break;
+
               case "juniorS":
+              case 5:
                 this.semesters.juniorS.push(course);
                 if(dbAdd){
                   this.addCourseDB(5,course);
                 }
                 break;
+
               case "seniorF":
+              case 6:
                 this.semesters.seniorF.push(course);
                 this.empty = false;
                 if(dbAdd){
                   this.addCourseDB(6,course);
                 }
                 break;
+
               case "seniorS":
+              case 7:
                 this.semesters.seniorS.push(course);
                 if(dbAdd){
                   this.addCourseDB(7,course);
