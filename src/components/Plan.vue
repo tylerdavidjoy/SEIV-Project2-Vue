@@ -389,9 +389,9 @@ export default {
      addCourseDB(semesterIndex, course){
        console.log("AddToDB: " + semesterIndex);
        console.log(course);
-       var payload = {semester_id: this.semestersDB[semesterIndex].semester_id, course_id: course.Course_Number, grade: course.Course_Grade}
+       var payload = {semester_id: this.semestersDB[semesterIndex].semester_id, course_id: course.Course_Number, grade: course.Course_Grade};
         axios
-        .post("http://team2.eaglesoftwareteam.com/semester_courses", payload)
+        .post("http://team2.eaglesoftwareteam.com/semester_courses", JSON.parse(payload))
         .then(response => {
           console.log(response.data)
         })
