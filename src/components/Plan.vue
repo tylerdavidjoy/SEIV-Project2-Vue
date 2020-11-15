@@ -234,7 +234,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
-                <td><button v-on:click="removeCourse(index,7,data)" style="width:20%;">X</button></td>
+                <td><button v-on:click="removeCourse(index,7)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
@@ -405,38 +405,46 @@ export default {
        console.log("REMOVE COURSE")
        console.log(index);
        console.log(semsterRemove);
-       console.log(course);
+       var course = "";
 
        switch(semsterRemove){
               case "freshmanF":
+                course = this.semesters.freshmanF[index];
                 this.semesters.freshmanF.splice(index);
                 this.removeCourseDB(0, course);
                 break;
               case "freshmanS":
+                course = this.semesters.freshmanS[index];
                 this.semesters.freshmanS.splice(index);
                 this.removeCourseDB(1, course);
                 break;
               case "sophmoreF":
+                course = this.semesters.sophmoreF[index];
                 this.semesters.sophmoreF.splice(index);
                 this.removeCourseDB(2, course);
                 break;
               case "sophmoreS":
+                course = this.semesters.sophmoreS[index];
                 this.semesters.sophmoreS.splice(index);
                 this.removeCourseDB(3, course);
                 break;
               case "juniorF":
+                course = this.semesters.juniorF[index];
                 this.semesters.juniorF.splice(index);
                 this.removeCourseDB(4, course);
                 break;
               case "juniorS":
+                course = this.semesters.juniorS[index];
                 this.semesters.juniorS.splice(index);
                 this.removeCourseDB(5, course);
                 break;
               case "seniorF":
+                course = this.semesters.seniorF[index];
                 this.semesters.seniorF.splice(index);
                 this.removeCourseDB(6, course);
                 break;
               case "seniorS":
+                course = this.semesters.seniorS[index];
                 this.semesters.seniorS.splice(index);
                 this.removeCourseDB(7, course);
                 break;
