@@ -498,90 +498,13 @@ export default {
 
      getCourses(i){
        console.log(this.semestersDB);
-        i.use();
+
        console.log(this.semestersDB[0].semester_id);
        axios
         .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[0].semester_id)
         .then(response => {
           console.log(response.data);
           this.getCourseForSemseterCourse(response.data, 0);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[1].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[1].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 1);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[2].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[2].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 2);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[3].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[3].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 3);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[4].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[4].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 4);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[5].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[5].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 5);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[6].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[6].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 6);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      console.log(this.semestersDB[7].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[7].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 7);
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
