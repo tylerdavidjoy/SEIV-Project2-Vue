@@ -467,6 +467,7 @@ export default {
       },
       removeCourseDB(semesterIndex,course){
         console.log("REMOVE COURSE DB");
+        console.log(course);
         axios
         .delete("http://team2.eaglesoftwareteam.com/semester_courses/?semester=" + this.semestersDB[semesterIndex].semester_id + "&course=" + course.Course_Id)
         .then(response => {
