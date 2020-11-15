@@ -234,7 +234,7 @@
                 <td><input type="text" placeholder="name" v-model="data.Course_Name" disabled/></td>
                 <td><input type="text" placeholder="credits" v-model="data.Course_Credit" disabled style="width:20%"/></td>
                 <td><input type="text" v-model="data.Course_Grade" style="width:25%"/></td>
-                <td><button v-on:click="removeCourse(index,7,data.Course_Id)" style="width:20%;">X</button></td>
+                <td><button v-on:click="removeCourse(index,7,data)" style="width:20%;">X</button></td>
               </tr>
 
               <tr>
