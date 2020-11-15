@@ -404,7 +404,7 @@ export default {
      removeCourse(index,semsterRemove, course){
        console.log("REMOVE COURSE")
        console.log(index);
-       console.log(semesterRemove);
+       console.log(semsterRemove);
        console.log(course);
 
        switch(semsterRemove){
