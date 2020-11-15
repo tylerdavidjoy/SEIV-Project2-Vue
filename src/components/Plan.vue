@@ -291,6 +291,8 @@ export default {
     },
      getCourse(dbAdd,id, semester)
      {
+       console.log("getCourse" +dbAdd +" " + id + " " + semester);
+
        var course = {};
        var url = "";
        if(id.includes("-"))
@@ -442,7 +444,6 @@ export default {
           console.log("ERROR: " + error.response)
         })  
       },
-
       removeCourseDB(semesterIndex,course){
         axios
         .delete("http://team2.eaglesoftwareteam.com/semester_courses/?semester=" + this.semestersDB[semesterIndex].semester_id + "&course=" + course.Course_Id)
@@ -481,10 +482,7 @@ export default {
           .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
           .then(response => {
             console.log(response.data);
-
-            for(var x = 0; x < response.data.length; x++){
-              this.getCourse(false,response.data[x].course_id,i)
-            }
+            this.getCourseForSemseterCourse(response.data, i);
     
         })
         .catch(error => {
@@ -493,6 +491,13 @@ export default {
       }
        
      },
+
+     getCourseForSemseterCourse(data, semester){
+        for(var x = 0; x < data.length; x++){
+            this.getCourse(false,data[x].course_id,semester)
+        }
+     },
+    
 
     createPDF(){
       var leftCol = 30;
