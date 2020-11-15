@@ -402,6 +402,11 @@ export default {
      },
 
      removeCourse(index,semsterRemove, course){
+       console.log("REMOVE COURSE")
+       console.log(index);
+       console.log(semesterRemove);
+       console.log(course);
+       
        switch(semsterRemove){
               case "freshmanF":
                 this.semesters.freshmanF.splice(index);
