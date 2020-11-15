@@ -506,7 +506,6 @@ export default {
         .then(response => {
           console.log(response.data);
           this.getCourseForSemseterCourse(response.data, 0);
-          break;
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
