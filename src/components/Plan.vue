@@ -295,16 +295,19 @@ export default {
 
        var course = {};
        var url = "http://team2.eaglesoftwareteam.com/courses?id=" + id;
-       if(id.includes("-"))
+
+/*        if(id.includes("-"))
        {
-         url = "http://team2.eaglesoftwareteam.com/courses?number=" + id
-       }
-       else
-       {
-         url = "http://team2.eaglesoftwareteam.com/courses?id=" + id
+         url = "http://team2.eaglesoftwareteam.com/courses?number=" + id;
        }
 
+       else
+       {
+         url = "http://team2.eaglesoftwareteam.com/courses?id=" + id;
+       } */
+
        console.log(url);
+
         axios
         .get(url)
         .then((response) => {
