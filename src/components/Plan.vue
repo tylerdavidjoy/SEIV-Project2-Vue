@@ -479,7 +479,7 @@ export default {
 
       console.log(this.semestersDB[i].semester_id);
       for(var i = 0; i < this.semesterDB[i].length;i++){
-        this.getCourses2(i)
+        this.getCourses2(i);
       }
        
      },
