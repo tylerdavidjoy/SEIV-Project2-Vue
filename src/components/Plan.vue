@@ -296,7 +296,7 @@ export default {
        var course = {};
        var url = "http://team2.eaglesoftwareteam.com/courses?id=" + id;
 
-      if(typeof id.includes("-"))
+      if(id.includes("-"))
        {
          url = "http://team2.eaglesoftwareteam.com/courses?number=" + id;
        }
