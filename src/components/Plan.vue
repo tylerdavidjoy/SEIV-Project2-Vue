@@ -498,7 +498,7 @@ export default {
 
      getCourses(i){
        console.log(this.semestersDB);
-
+        i.use();
        console.log(this.semestersDB[0].semester_id);
        axios
         .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[0].semester_id)
