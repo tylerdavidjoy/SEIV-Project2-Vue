@@ -291,7 +291,7 @@ export default {
     },
      getCourse(dbAdd,id, semester)
      {
-       console.log("getCourse" +dbAdd +" " + id + " " + semester);
+       console.log("getCourse " +dbAdd +" " + id + " " + semester);
 
        var course = {};
        var url = "";
@@ -316,8 +316,9 @@ export default {
 
         return course;
      },
+     
      addCourse(temp,dbAdd,semester){
-      console.log("AddCourse: " + this.$route.params.semester);
+      console.log("AddCourse: " + semester);
 
       var course = {Course_id: temp.Course_Id, Course_Number: temp.Course_Number, Course_Name:temp.Course_Name, Course_Credit: temp.Course_Credit, Course_Grade: ''}
       switch(semester){
@@ -473,23 +474,27 @@ export default {
       })  
      },
 
-     getCourses(){
-       console.log(this.semestersDB);
-       for(var i = 0; i < this.semestersDB.length; i++)
-       {
-         console.log(this.semestersDB[i].semester_id);
-          axios
-          .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
-          .then(response => {
-            console.log(response.data);
-            this.getCourseForSemseterCourse(response.data, i);
-    
+    getCourses(){
+      console.log(this.semestersDB);
+
+      console.log(this.semestersDB[i].semester_id);
+      for(var i = 0; i < this.semesterDB[i].length;i++){
+        this.getCourses2(i)
+      }
+       
+     },
+
+     getCourses2(i)
+     {
+        axios
+        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
+        .then(response => {
+          console.log(response.data);
+          this.getCourseForSemseterCourse(response.data, i);
         })
         .catch(error => {
           console.log("ERROR: " + error.response)
-        }) 
-      }
-       
+        })
      },
 
      getCourseForSemseterCourse(data, semester){
