@@ -496,15 +496,23 @@ export default {
       })  
      },
 
-     getCourses(){
-       console.log(this.semestersDB);
+    getCourses()
+    {
+      console.log(this.semestersDB);
+      for(var i = 0; i < this.semesterDB.length; i++){
+        this.getCourses2(i);
+      }
+    },
 
-       console.log(this.semestersDB[0].semester_id);
+     getCourses2(i){
+       
+
+       console.log(this.semestersDB[i].semester_id);
        axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[0].semester_id)
+        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
         .then(response => {
           console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 0);
+          this.getCourseForSemseterCourse(response.data, i);
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
