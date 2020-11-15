@@ -294,7 +294,7 @@ export default {
        console.log("getCourse " +dbAdd +" " + id + " " + semester);
 
        var course = {};
-       var url = "";
+       var url = "http://team2.eaglesoftwareteam.com/courses?id=" + id;
        if(id.includes("-"))
        {
          url = "http://team2.eaglesoftwareteam.com/courses?number=" + id
@@ -303,11 +303,15 @@ export default {
        {
          url = "http://team2.eaglesoftwareteam.com/courses?id=" + id
        }
+
+       console.log(url);
         axios
         .get(url)
         .then((response) => {
           console.log(response.data);
           course = response.data;
+          console.log(course);
+
           this.addCourse(course,dbAdd,semester)
         })
         .catch((error) => {
