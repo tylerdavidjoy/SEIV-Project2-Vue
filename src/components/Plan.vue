@@ -302,9 +302,7 @@ export default {
          url = "http://team2.eaglesoftwareteam.com/courses?id=" + id
        }
         axios
-        .get(
-          "http://team2.eaglesoftwareteam.com/courses/id=" + id
-        )
+        .get(url)
         .then((response) => {
           console.log(response.data);
           course = response.data;
