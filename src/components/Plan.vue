@@ -496,7 +496,7 @@ export default {
       })  
      },
 
-     getCourses(i){
+     getCourses(){
        console.log(this.semestersDB);
 
        console.log(this.semestersDB[0].semester_id);
