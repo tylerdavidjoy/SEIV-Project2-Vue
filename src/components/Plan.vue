@@ -500,19 +500,7 @@ export default {
        console.log(this.semestersDB);
 
       //FRESHMAN FALL
-       console.log(this.semestersDB[0].semester_id);
-       axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[0].semester_id)
-        .then(response => {
-          console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 0);
-      })
-      .catch(error => {
-        console.log("ERROR: " + error.response)
-      }) 
-
-      //FRESHMAN SPRING
-      console.log(this.semestersDB[1].semester_id);
+       console.log(this.semestersDB[1].semester_id);
        axios
         .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[1].semester_id)
         .then(response => {
@@ -521,8 +509,7 @@ export default {
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
-      })
-       
+      })  
      },
 
      getCourseForSemseterCourse(data, semester){
