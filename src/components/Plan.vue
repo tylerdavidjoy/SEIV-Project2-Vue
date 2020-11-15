@@ -296,7 +296,7 @@ export default {
        var course = {};
        var url = "http://team2.eaglesoftwareteam.com/courses?id=" + id;
 
-/*        if(id.includes("-"))
+      if(typeof id.includes("-"))
        {
          url = "http://team2.eaglesoftwareteam.com/courses?number=" + id;
        }
@@ -304,7 +304,7 @@ export default {
        else
        {
          url = "http://team2.eaglesoftwareteam.com/courses?id=" + id;
-       } */
+       } 
 
        console.log(url);
 
@@ -489,7 +489,7 @@ export default {
         .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[0].semester_id)
         .then(response => {
           console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, 0);
+          this.getCourseForSemseterCourse(response.data, "0");
       })
       .catch(error => {
         console.log("ERROR: " + error.response)
