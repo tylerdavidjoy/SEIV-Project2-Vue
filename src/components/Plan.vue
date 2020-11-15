@@ -353,7 +353,7 @@ export default {
                 this.semesters.sophmoreF.push(course);
                 this.empty = false;
                 if(dbAdd){
-                  this.addCourseDB(1,course);
+                  this.addCourseDB(2,course);
                 }
                 break;
 
