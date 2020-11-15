@@ -476,8 +476,6 @@ export default {
 
     getCourses(){
       console.log(this.semestersDB);
-
-      console.log(this.semestersDB[i].semester_id);
       for(var i = 0; i < this.semesterDB[i].length;i++){
         this.getCourses2(i);
       }
@@ -486,6 +484,7 @@ export default {
 
      getCourses2(i)
      {
+        console.log(this.semestersDB[i].semester_id);
         axios
         .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
         .then(response => {
