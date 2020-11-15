@@ -406,7 +406,7 @@ export default {
        console.log(index);
        console.log(semesterRemove);
        console.log(course);
-       
+
        switch(semsterRemove){
               case "freshmanF":
                 this.semesters.freshmanF.splice(index);
@@ -458,6 +458,7 @@ export default {
         })  
       },
       removeCourseDB(semesterIndex,course){
+        console.log("REMOVE COURSE DB");
         axios
         .delete("http://team2.eaglesoftwareteam.com/semester_courses/?semester=" + this.semestersDB[semesterIndex].semester_id + "&course=" + course.Course_Id)
         .then(response => {
