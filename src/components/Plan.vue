@@ -474,26 +474,20 @@ export default {
       })  
      },
 
-    getCourses(){
-      console.log(this.semestersDB);
-      for(var i = 0; i < this.semesterDB[i].length;i++){
-        this.getCourses2(i);
-      }
-       
-     },
+     getCourses(){
+       console.log(this.semestersDB);
 
-     getCourses2(i)
-     {
-        console.log(this.semestersDB[i].semester_id);
-        axios
-        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[i].semester_id)
+       console.log(this.semestersDB[0].semester_id);
+       axios
+        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[0].semester_id)
         .then(response => {
           console.log(response.data);
-          this.getCourseForSemseterCourse(response.data, i);
-        })
-        .catch(error => {
-          console.log("ERROR: " + error.response)
-        })
+          this.getCourseForSemseterCourse(response.data, 0);
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      }) 
+       
      },
 
      getCourseForSemseterCourse(data, semester){
