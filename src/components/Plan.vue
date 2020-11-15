@@ -289,8 +289,18 @@ export default {
     selectCourse(sem) {
       this.$router.push({name: 'ListView', params: {semester:sem}})
     },
-     getCourse(dbAdd,id, semester){
+     getCourse(dbAdd,id, semester)
+     {
        var course = {};
+       var url = "";
+       if(id.includes("-"))
+       {
+         url = "http://team2.eaglesoftwareteam.com/courses?number=" + id
+       }
+       else
+       {
+         url = "http://team2.eaglesoftwareteam.com/courses?id=" + id
+       }
         axios
         .get(
           "http://team2.eaglesoftwareteam.com/courses/id=" + id
