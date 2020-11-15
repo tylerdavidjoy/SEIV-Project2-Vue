@@ -408,42 +408,42 @@ export default {
        var course = "";
 
        switch(semsterRemove){
-              case "freshmanF":
+              case 0:
                 course = this.semesters.freshmanF[index];
                 this.semesters.freshmanF.splice(index);
                 this.removeCourseDB(0, course);
                 break;
-              case "freshmanS":
+              case 1:
                 course = this.semesters.freshmanS[index];
                 this.semesters.freshmanS.splice(index);
                 this.removeCourseDB(1, course);
                 break;
-              case "sophmoreF":
+              case 2:
                 course = this.semesters.sophmoreF[index];
                 this.semesters.sophmoreF.splice(index);
                 this.removeCourseDB(2, course);
                 break;
-              case "sophmoreS":
+              case 3:
                 course = this.semesters.sophmoreS[index];
                 this.semesters.sophmoreS.splice(index);
                 this.removeCourseDB(3, course);
                 break;
-              case "juniorF":
+              case 4:
                 course = this.semesters.juniorF[index];
                 this.semesters.juniorF.splice(index);
                 this.removeCourseDB(4, course);
                 break;
-              case "juniorS":
+              case 5:
                 course = this.semesters.juniorS[index];
                 this.semesters.juniorS.splice(index);
                 this.removeCourseDB(5, course);
                 break;
-              case "seniorF":
+              case 6:
                 course = this.semesters.seniorF[index];
                 this.semesters.seniorF.splice(index);
                 this.removeCourseDB(6, course);
                 break;
-              case "seniorS":
+              case 7:
                 course = this.semesters.seniorS[index];
                 this.semesters.seniorS.splice(index);
                 this.removeCourseDB(7, course);
