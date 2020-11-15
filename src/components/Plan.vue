@@ -555,6 +555,39 @@ export default {
         console.log("ERROR: " + error.response)
       });
 
+      console.log(this.semestersDB[5].semester_id);
+       axios
+        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[5].semester_id)
+        .then(response => {
+          console.log(response.data);
+          this.getCourseForSemseterCourse(response.data, 5);
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      });
+
+      console.log(this.semestersDB[6].semester_id);
+       axios
+        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[6].semester_id)
+        .then(response => {
+          console.log(response.data);
+          this.getCourseForSemseterCourse(response.data, 6);
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      });
+
+      console.log(this.semestersDB[7].semester_id);
+       axios
+        .get("http://team2.eaglesoftwareteam.com/semester_courses?semester=" + this.semestersDB[7].semester_id)
+        .then(response => {
+          console.log(response.data);
+          this.getCourseForSemseterCourse(response.data, 7);
+      })
+      .catch(error => {
+        console.log("ERROR: " + error.response)
+      });
+
      },
 
      getCourseForSemseterCourse(data, semester){
