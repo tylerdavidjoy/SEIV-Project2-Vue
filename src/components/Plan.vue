@@ -401,7 +401,7 @@ export default {
             }
      },
 
-     removeCourse(index,semsterRemove, course){
+     removeCourse(index,semsterRemove){
        console.log("REMOVE COURSE")
        console.log(index);
        console.log(semsterRemove);
