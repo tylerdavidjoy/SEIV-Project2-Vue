@@ -119,7 +119,8 @@ export default {
         Course_Description: "",
         Course_Department: "",
         Course_Level: "",
-      }
+      },
+      user: window.user
     };
   },
   methods: {
