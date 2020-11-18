@@ -1,8 +1,6 @@
 <template>
   <div class="main">
     <h1 style="font-size:60px">Course View</h1>
-    <p>{{user.name}}</p>
-    <button v-on:click="planPage()">PlanPage</button>
     <div>
       <select v-model="selected"
       @change="sort()" style="margin:10px; height:20px">
@@ -15,8 +13,8 @@
 
       <input type="text" v-model="search" placeholder="Search" style="width: 40%; height: 30px"/>
       <button v-on:click="searchItem()" style="width:7%; height: 36px; margin:10px;">Search</button>
-      <button v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button>
-      <button v-on:click="viewStudents()" style="width:4%; height: 25px; margin:10px;">Students</button>
+      <button v-if="user.role_type != 'student'" v-on:click="addNew(true)" style="width:4%; height: 25px; margin:10px;"> Add +</button>
+      <button v-if="user.role_type != 'student'" v-on:click="viewStudents()" style="width:4%; height: 25px; margin:10px;">Students</button>
     </div>
 
     <div v-for="(data,index) in display" :key='index'>
