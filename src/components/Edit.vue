@@ -88,11 +88,11 @@
       </tbody>
     </table>
       <div>
-        <button v-on:click="cSave($route.params.new)">Save</button>
+        <button v-if="user.role_type != 'student'" v-on:click="cSave($route.params.new)">Save</button>
         <button v-on:click="backToList()">Cancel</button>
         <button
           v-on:click="cDelete($route.params.new)"
-          v-if="$route.params.new != true"
+          v-if="$route.params.new != true && user.role_type != 'student'"
         >
           Delete
         </button>
