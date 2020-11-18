@@ -205,7 +205,7 @@ export default {
     if (!this.$route.params.new) {
       axios
         .get(
-          "http://team2.eaglesoftwareteam.com/courses/id=" + this.$route.params.id
+          "http://team2.eaglesoftwareteam.com/courses/number=" + this.$route.params.id
         )
         .then((response) => {
           console.log(response.data);
